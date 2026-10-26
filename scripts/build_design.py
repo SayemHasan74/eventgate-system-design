@@ -1,5 +1,5 @@
 from pathlib import Path
-import re,json,math,textwrap,html,xml.etree.ElementTree as ET
+import re,json,math,textwrap,html,heapq,xml.etree.ElementTree as ET
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT.parent/'eventgate-api'
@@ -38,7 +38,64 @@ class Diagram:
   h=h or 48+len(lines)*24+12
   self.nodes.append(dict(key=key,title=title,lines=lines,x=x,y=y,w=w,h=h,color=color));return key
  def edge(self,a,b,label='',color='#557087',dashed=False):self.edges.append(dict(a=a,b=b,label=label,color=color,dashed=dashed))
+ def route_edges(self):
+  nodes={n['key']:n for n in self.nodes};used=set();counts={}
+  for e in self.edges:
+   for k in ('a','b'):counts[e[k]]=counts.get(e[k],0)+1
+  seen={}
+  for e in self.edges:
+   a,b=nodes[e['a']],nodes[e['b']]
+   dx=b['x']+b['w']/2-a['x']-a['w']/2;dy=b['y']+b['h']/2-a['y']-a['h']/2
+   sides=('right','left') if abs(dx)>abs(dy)*.8 and abs(dx)>40 else ('bottom','top')
+   if sides[0]=='right' and dx<0:sides=('left','right')
+   if sides[0]=='bottom' and dy<0:sides=('top','bottom')
+   endpoints=[];ports=[]
+   for node,side in zip((a,b),sides):
+    idx=seen.get(node['key'],0);seen[node['key']]=idx+1
+    fraction=.22+.56*(idx+1)/(counts[node['key']]+1)
+    if side in ('right','left'):
+     fx=1 if side=='right' else 0;fy=fraction;x=node['x']+fx*node['w'];y=round(node['y']+fy*node['h'],2);outside=(x+(12 if fx else -12),y)
+    else:
+     fx=fraction;fy=1 if side=='bottom' else 0;x=round(node['x']+fx*node['w'],2);y=node['y']+fy*node['h'];outside=(x,y+(12 if fy else -12))
+    ports.append((fx,fy));endpoints.append(((x,y),outside))
+   start,end=endpoints[0][1],endpoints[1][1]
+   xs=sorted(set([12,self.w-12,start[0],end[0]]+[v for n in self.nodes for v in (n['x']-12,n['x']+n['w']+12)]))
+   ys=sorted(set([85,self.h-12,start[1],end[1]]+[v for n in self.nodes for v in (n['y']-12,n['y']+n['h']+12)]))
+   obstacles=[(n['x']-5,n['y']-5,n['x']+n['w']+5,n['y']+n['h']+5) for n in self.nodes]
+   def clear(u,v):
+    for l,t,r,bt in obstacles:
+     if u[0]==v[0] and l<u[0]<r and max(min(u[1],v[1]),t)<min(max(u[1],v[1]),bt):return False
+     if u[1]==v[1] and t<u[1]<bt and max(min(u[0],v[0]),l)<min(max(u[0],v[0]),r):return False
+    return True
+   init=(xs.index(start[0]),ys.index(start[1]),-1);goal=(xs.index(end[0]),ys.index(end[1]));queue=[(0,init)];dist={init:0};prev={};final=None
+   while queue:
+    cost,state=heapq.heappop(queue)
+    if cost!=dist.get(state):continue
+    xi,yi,direction=state
+    if (xi,yi)==goal:final=state;break
+    u=(xs[xi],ys[yi])
+    for nx,ny,nd in [(xi-1,yi,0),(xi+1,yi,0),(xi,yi-1,1),(xi,yi+1,1)]:
+     if nx<0 or nx>=len(xs) or ny<0 or ny>=len(ys):continue
+     v=(xs[nx],ys[ny])
+     if not clear(u,v):continue
+     segment=tuple(sorted((u,v)));nc=cost+abs(u[0]-v[0])+abs(u[1]-v[1])+(24 if direction not in (-1,nd) else 0)+(160 if segment in used else 0)
+     new=(nx,ny,nd)
+     if nc<dist.get(new,1e20):dist[new]=nc;prev[new]=state;heapq.heappush(queue,(nc,new))
+   if final is None:raise ValueError('No clear diagram route '+str(e))
+   points=[];cur=final
+   while True:
+    points.append((xs[cur[0]],ys[cur[1]]))
+    if cur==init:break
+    cur=prev[cur]
+   points.reverse()
+   for u,v in zip(points,points[1:]):used.add(tuple(sorted((u,v))))
+   allpoints=[endpoints[0][0]]+points+[endpoints[1][0]];simple=[]
+   for point in allpoints:
+    if len(simple)>1 and ((simple[-2][0]==simple[-1][0]==point[0]) or (simple[-2][1]==simple[-1][1]==point[1])):simple[-1]=point
+    elif not simple or point!=simple[-1]:simple.append(point)
+   e['points']=simple;e['ports']=ports
  def xml(self):
+  self.route_edges()
   model=ET.Element('mxGraphModel',{'dx':str(self.w),'dy':str(self.h),'grid':'1','gridSize':'10','page':'1','pageWidth':str(self.w),'pageHeight':str(self.h),'background':'#ffffff'})
   root=ET.SubElement(model,'root');ET.SubElement(root,'mxCell',id='0');ET.SubElement(root,'mxCell',id='1',parent='0')
   for key,txt,y,size in [('title',self.title,15,27),('subtitle',self.subtitle,54,15)]:
@@ -48,7 +105,11 @@ class Diagram:
    c=ET.SubElement(root,'mxCell',id=n['key'],value=value,style=f'rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor={n["color"]};strokeColor=#657c8f;',vertex='1',parent='1')
    ET.SubElement(c,'mxGeometry',{'x':str(n['x']),'y':str(n['y']),'width':str(n['w']),'height':str(n['h']),'as':'geometry'})
   for i,e in enumerate(self.edges):
-   c=ET.SubElement(root,'mxCell',id='edge-'+str(i),value=e['label'],style=f'edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor={e["color"]};endArrow=block;endFill=1;dashed={int(e["dashed"])};',edge='1',parent='1',source=e['a'],target=e['b']);ET.SubElement(c,'mxGeometry',{'relative':'1','as':'geometry'})
+   (ex,ey),(ix,iy)=e['ports']
+   c=ET.SubElement(root,'mxCell',id='edge-'+str(i),value=e['label'],style=f'edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor={e["color"]};endArrow=block;endFill=1;exitX={ex};exitY={ey};entryX={ix};entryY={iy};exitPerimeter=0;entryPerimeter=0;dashed={int(e["dashed"])};',edge='1',parent='1',source=e['a'],target=e['b'])
+   geo=ET.SubElement(c,'mxGeometry',{'relative':'1','y':'-9','as':'geometry'});arr=ET.SubElement(geo,'Array',{'as':'points'})
+   for x,y in e['points'][1:-1]:ET.SubElement(arr,'mxPoint',{'x':str(x),'y':str(y)})
+
   return model
  def preview(self,path):
   scale=2;im=Image.new('RGB',(self.w*scale,self.h*scale),'white');d=ImageDraw.Draw(im)
@@ -56,16 +117,12 @@ class Diagram:
   text(28,18,self.title,27,True);text(28,58,self.subtitle,15)
   byid={x['key']:x for x in self.nodes}
   for i,e in enumerate(self.edges):
-   a,b=byid[e['a']],byid[e['b']]
-   if abs(a['x']-b['x'])>40:
-    forward=b['x']>a['x'];sx=a['x']+(a['w'] if forward else 0);sy=a['y']+a['h']/2;tx=b['x']+(0 if forward else b['w']);ty=b['y']+b['h']/2
-    mid=(sx+tx)/2;pts=[(sx,sy),(mid,sy),(mid,ty),(tx,ty)]
-   else:
-    forward=b['y']>a['y'];sx=a['x']+a['w']/2;sy=a['y']+(a['h'] if forward else 0);tx=b['x']+b['w']/2;ty=b['y']+(0 if forward else b['h']);mid=(sy+ty)/2;pts=[(sx,sy),(sx,mid),(tx,mid),(tx,ty)]
+   pts=e['points']
    d.line([(int(x*scale),int(y*scale)) for x,y in pts],fill=e['color'],width=3)
    end,prev=pts[-1],pts[-2];theta=math.atan2(end[1]-prev[1],end[0]-prev[0]);p=[end,(end[0]-12*math.cos(theta-.45),end[1]-12*math.sin(theta-.45)),(end[0]-12*math.cos(theta+.45),end[1]-12*math.sin(theta+.45))];d.polygon([(x*scale,y*scale) for x,y in p],fill=e['color'])
    if e['label']:
-    lx=(pts[1][0]+pts[2][0])/2;ly=(pts[1][1]+pts[2][1])/2-8;tw=d.textbbox((0,0),e['label'],font=font(13*scale));d.rectangle((lx*scale-4,ly*scale-1,lx*scale+tw[2]+5,ly*scale+tw[3]+4),fill='white');text(lx,ly,e['label'],13)
+    u,v=max(zip(pts,pts[1:]),key=lambda ab:abs(ab[0][0]-ab[1][0])+abs(ab[0][1]-ab[1][1]));lx=(u[0]+v[0])/2;ly=(u[1]+v[1])/2-10;tw=d.textbbox((0,0),e['label'],font=font(13*scale));lx-=tw[2]/scale/2;d.rectangle((lx*scale-4,ly*scale-1,lx*scale+tw[2]+5,ly*scale+tw[3]+4),fill='white');text(lx,ly,e['label'],13)
+
   for n in self.nodes:
    x,y,w,h=[n[k] for k in ('x','y','w','h')];d.rectangle((x*scale,y*scale,(x+w)*scale,(y+h)*scale),fill=n['color'],outline='#657c8f',width=2)
    text(x+12,y+10,n['title'],19,True);d.line(((x+10)*scale,(y+40)*scale,(x+w-10)*scale,(y+40)*scale),fill='#bdcbd5',width=2)
@@ -103,7 +160,7 @@ chosen={
 }
 ERDS=[]
 for vi,(title,names) in enumerate(views):
- p=Diagram('EventGate ERD '+str(vi+1)+' '+title,'PK primary key   FK foreign key   UQ unique   ? nullable   |   Connector runs from parent to child',1320,1080)
+ p=Diagram('EventGate ERD '+str(vi+1)+' '+title,'PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child',1320,1080)
  for i,name in enumerate(names):
   fields=models[name]['fields'];keep=chosen.get(name)
   if keep:fields=[f for k in keep for f in fields if f['name']==k]
@@ -119,9 +176,10 @@ for vi,(title,names) in enumerate(views):
   p.box(name,name,lines,x,y,w=385,h=min(294,60+24*len(lines)),color='#e9f1f8' if name not in ['User','Order','Refund'] else '#eff4e9')
  for rel in relationships:
   if rel['parent'] in names and rel['child'] in names and rel['parent']!=rel['child']:
-   child=rel['child'];parent=rel['parent'];label='1 : '+('0..1' if rel['unique'] else '0..N')
+   child=rel['child'];parent=rel['parent'];label='1:'+('0..1' if rel['unique'] else 'N')
    
    if not any(e['a']==parent and e['b']==child for e in p.edges):p.edge(parent,child,label)
+ p.h=max(n['y']+n['h'] for n in p.nodes)+30
  ERDS.append(p)
 write_diagrams('eventgate-erd',ERDS)
 
@@ -147,6 +205,23 @@ arch.box('orm','Prisma and PostgreSQL',['Queries, constraints and relations','Ro
 arch.box('worker','Durable jobs and integrations',['Reservation expiry and reconciliation','SSLCommerz, Google and email','Leases, retry limits and audit trail'],28,680,815,h=155)
 arch.box('errors','Central error handling',['AppError becomes safe envelope','Unexpected faults logged with ID','Secrets excluded from responses'],918,680,370,h=155,color='#fff3e6')
 for a,b,l in [('client','bff','HTTPS'),('bff','api','Bearer API request'),('api','controller','validated request'),('controller','service','command or query'),('service','orm','data access'),('orm','worker','durable job state'),('worker','service','reconcile'),('service','errors','failure')]:arch.edge(a,b,l)
+# The main SDA figure focuses on one complete request and response. The
+# payment continuation is explained step by step in the document.
+flow.nodes=[n for n in flow.nodes if n['key'] not in ['checkout','callback','fulfilled']]
+flow.edges=[e for e in flow.edges if e['a'] not in ['checkout','callback','fulfilled'] and e['b'] not in ['checkout','callback','fulfilled']]
+for n in flow.nodes:
+ if n['key']=='failure':n['y']=570
+ elif n['y']==405:n['y']=340
+flow.title='EventGate ticket reservation workflow'
+flow.subtitle='A complete client request through API layers to a committed inventory reservation and response'
+flow.h=max(n['y']+n['h'] for n in flow.nodes)+25
+for n in arch.nodes:
+ if n['y']==395:n['y']=330
+ elif n['y']==680:n['y']=550
+arch.h=max(n['y']+n['h'] for n in arch.nodes)+25
+for diagram in [flow,arch]:
+ for edge in diagram.edges:
+  if edge['label']!='JSON response':edge['label']=''
 write_diagrams('eventgate-workflows',[flow,arch])
 
 # Route inventory is grounded in router declarations and app mounts.
