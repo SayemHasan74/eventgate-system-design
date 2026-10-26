@@ -4,8 +4,8 @@ A documentation deliverable for the existing EventGate event management and tick
 
 ## Diagrams
 
-- [Open the ERD in Draw.io Viewer](https://viewer.diagrams.net/?lightbox=1&nav=1&title=EventGate%20ERD#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2Fmain%2Fdiagrams%2Feventgate-erd.drawio)
-- [Open the SDA workflow and architecture in Draw.io Viewer](https://viewer.diagrams.net/?lightbox=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2Fmain%2Fdiagrams%2Feventgate-workflows.drawio)
+- [Open the ERD in Draw.io Viewer](https://app.diagrams.net/?lightbox=1&nav=1&title=EventGate%20ERD#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2F4e97d5e5eeb708c18c095c1123e91971f32037f5%2Fdiagrams%2Feventgate-erd.drawio)
+- [Open the SDA workflow and architecture in Draw.io Viewer](https://app.diagrams.net/?lightbox=1&nav=1&title=EventGate%20Workflows#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2F4e97d5e5eeb708c18c095c1123e91971f32037f5%2Fdiagrams%2Feventgate-workflows.drawio)
 
 Download the `.drawio` files in `diagrams/` to edit them in diagrams.net. The ERD has four named views, covers all 23 Prisma entities, and labels primary keys, foreign keys and unique constraints. Nullable foreign keys use `?`. Scalar pointers without a Prisma relation are not presented as enforced foreign keys. The document contains the complete foreign-key ledger, including links across views.
 

@@ -86,8 +86,9 @@ def diagram(file,caption):
  p(caption,'Caption')
 def code(obj):
  text=obj if isinstance(obj,str) else json.dumps(obj,indent=2,ensure_ascii=True)
- for line in text.splitlines():
-  q=p(line,'Code Example');q.paragraph_format.keep_with_next=False
+ lines=text.splitlines()
+ for idx,line in enumerate(lines):
+  q=p(line,'Code Example');q.paragraph_format.keep_with_next=idx<len(lines)-1
 
 def err(message,error_code,detail=None,field=None):
  e={'code':error_code,'message':detail or message}
@@ -132,7 +133,7 @@ table(['Role','Allowed actions','Scope restriction'],[
  ('ADMIN','Manage user roles and status, inspect platform records, cancel events with an audit reason, review refunds and retry eligible recovery work.','Sensitive actions are audited; administrator access does not make an unverified payment successful.')],[1.0,3.5,2.3],9)
 p('Visitor is an unauthenticated actor rather than a stored UserRole. Public self registration creates ATTENDEE accounts; callers cannot assign themselves privileged roles.')
 
-h('2 Basic backend architecture')
+doc.add_page_break();h('2 Basic backend architecture')
 p('The application uses a modular monolith so related business rules can share explicit database transactions. Domain modules separate authentication, events, ticket tiers, orders, payments, tickets, refunds, discovery, notifications and reporting. The service layer uses Prisma directly; a separate repository layer is not required to explain the existing architecture.')
 table(['Layer','Responsibility and boundaries'],[
  ('Client','Collect user intent and render confirmed state. Client side validation improves usability but does not authorize operations or establish stock, payment or admission outcomes.'),
