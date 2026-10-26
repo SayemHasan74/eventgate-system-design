@@ -1,0 +1,2407 @@
+{
+  "EventPreference": {
+    "fields": [
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "PK",
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "preferredCity",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "preferredCategories",
+        "type": "String[]",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "personalizationEnabled",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": []
+  },
+  "User": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "email",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "displayName",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "phone",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "address",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "city",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "postalCode",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "country",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "passwordHash",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "role",
+        "type": "UserRole",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "UserStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "deletedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "tokenVersion",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "emailVerifiedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "role, status"
+      ],
+      [
+        "index",
+        "status, deletedAt"
+      ]
+    ]
+  },
+  "Notification": {
+    "fields": [
+      {
+        "name": "reminderJobId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "Job",
+        "uuid": true
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "type",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "title",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "body",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "actionPath",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "sourceKey",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "readAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "userId, sourceKey"
+      ],
+      [
+        "index",
+        "reminderJobId"
+      ],
+      [
+        "index",
+        "userId, createdAt, id"
+      ],
+      [
+        "index",
+        "userId, readAt"
+      ]
+    ]
+  },
+  "NotificationPreference": {
+    "fields": [
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "PK",
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "inAppEnabled",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "emailEnabled",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "bookingUpdates",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "savedEventReminders",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "waitlistAlerts",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "marketingEmail",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "personalizedEmail",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": []
+  },
+  "EmailVerification": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "email",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "tokenHash",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "expiresAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "consumedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "userId, createdAt"
+      ]
+    ]
+  },
+  "NotificationDelivery": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "notificationId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Notification",
+        "uuid": true
+      },
+      {
+        "name": "channel",
+        "type": "NotificationChannel",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "state",
+        "type": "NotificationDeliveryState",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerMessageId",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "idempotencyKey",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "attempts",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "nextAttemptAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "firstAttemptAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "leaseToken",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "leaseExpiresAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "error",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "recipient",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "sender",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "baseUrl",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "passwordResetId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "PasswordReset",
+        "uuid": true
+      },
+      {
+        "name": "verificationId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "EmailVerification",
+        "uuid": true
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "notificationId, channel"
+      ],
+      [
+        "index",
+        "state, nextAttemptAt"
+      ]
+    ]
+  },
+  "AuthIdentity": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "provider",
+        "type": "AuthProvider",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerSubject",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerEmail",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "provider, providerSubject"
+      ],
+      [
+        "index",
+        "userId"
+      ]
+    ]
+  },
+  "RefreshSession": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "familyId",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "tokenHash",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "expiresAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "revokedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "replacedBySessionId",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "userId, familyId"
+      ],
+      [
+        "index",
+        "expiresAt"
+      ]
+    ]
+  },
+  "Event": {
+    "fields": [
+      {
+        "name": "reminderVersion",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "organizerId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "title",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "slug",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "description",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "category",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "venue",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "city",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "address",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "startAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "endAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "imageUrl",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "EventStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "publishedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "cancelledAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "completedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "deletedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "organizerId, status, deletedAt"
+      ],
+      [
+        "index",
+        "status, startAt"
+      ],
+      [
+        "index",
+        "city, startAt"
+      ],
+      [
+        "index",
+        "category, startAt"
+      ]
+    ]
+  },
+  "SavedEvent": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "eventId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Event",
+        "uuid": true
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "saleReminderEnabled",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "eventReminderEnabled",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reminderVersion",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "userId, eventId"
+      ],
+      [
+        "index",
+        "userId, createdAt, id"
+      ],
+      [
+        "index",
+        "eventId, id"
+      ]
+    ]
+  },
+  "TicketTier": {
+    "fields": [
+      {
+        "name": "availabilityWave",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "eventId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Event",
+        "uuid": true
+      },
+      {
+        "name": "name",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "pricePaisa",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "capacity",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reservedQuantity",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "soldQuantity",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "salesStartAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "salesEndAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "salesPaused",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "deletedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "eventId, name"
+      ],
+      [
+        "index",
+        "eventId, deletedAt"
+      ],
+      [
+        "index",
+        "eventId, salesStartAt, salesEndAt"
+      ]
+    ]
+  },
+  "WaitlistEntry": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "ticketTierId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "TicketTier",
+        "uuid": true
+      },
+      {
+        "name": "status",
+        "type": "WaitlistStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "generation",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastAlertWave",
+        "type": "Int?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "joinedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastNotifiedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "userId, ticketTierId"
+      ],
+      [
+        "index",
+        "userId, status, createdAt, id"
+      ],
+      [
+        "index",
+        "ticketTierId, status, joinedAt, id"
+      ]
+    ]
+  },
+  "Order": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "attendeeId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "eventId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Event",
+        "uuid": true
+      },
+      {
+        "name": "ticketTierId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "TicketTier",
+        "uuid": true
+      },
+      {
+        "name": "eventNameSnapshot",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "ticketTierNameSnapshot",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "unitPricePaisaSnapshot",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "quantity",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "totalAmountPaisaSnapshot",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "currency",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "OrderStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reservationExpiresAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reservationReleasedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "paidAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "refundedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "fulfilledPaymentAttemptId",
+        "type": "String?",
+        "flags": [
+          "FK",
+          "UQ"
+        ],
+        "target": "PaymentAttempt",
+        "uuid": true
+      },
+      {
+        "name": "financialReviewRequired",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "attendeeId, createdAt"
+      ],
+      [
+        "index",
+        "eventId, status"
+      ],
+      [
+        "index",
+        "ticketTierId, status"
+      ],
+      [
+        "index",
+        "status, reservationExpiresAt"
+      ]
+    ]
+  },
+  "PaymentAttempt": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "orderId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Order",
+        "uuid": true
+      },
+      {
+        "name": "sequence",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "provider",
+        "type": "PaymentProvider",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "merchantTransactionId",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerSessionKey",
+        "type": "String?",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerTransactionId",
+        "type": "String?",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerValidationId",
+        "type": "String?",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "amountPaisa",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "currency",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "PaymentStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "initiatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "completedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failureCode",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failureMessage",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "checkoutUrl",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "checkoutExpiresAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "replayOfAttemptId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "PaymentAttempt",
+        "uuid": true
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "orderId, sequence"
+      ],
+      [
+        "index",
+        "orderId, status"
+      ],
+      [
+        "index",
+        "status, initiatedAt"
+      ]
+    ]
+  },
+  "PaymentEvent": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "paymentAttemptId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "PaymentAttempt",
+        "uuid": true
+      },
+      {
+        "name": "provider",
+        "type": "PaymentProvider",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerEventKey",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "eventType",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "payload",
+        "type": "Json",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "receivedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "processedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "processingError",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "capturedPaymentAttemptId",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "paymentAttemptId"
+      ],
+      [
+        "index",
+        "processedAt"
+      ]
+    ]
+  },
+  "Ticket": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "orderId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Order",
+        "uuid": true
+      },
+      {
+        "name": "eventId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Event",
+        "uuid": true
+      },
+      {
+        "name": "ticketTierId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "TicketTier",
+        "uuid": true
+      },
+      {
+        "name": "attendeeId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "sequence",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "qrToken",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "TicketStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "checkedInAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "checkedInById",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "orderId, sequence"
+      ],
+      [
+        "index",
+        "eventId, status"
+      ],
+      [
+        "index",
+        "eventId, checkedInAt, id"
+      ],
+      [
+        "index",
+        "attendeeId, createdAt"
+      ]
+    ]
+  },
+  "Refund": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "orderId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Order",
+        "uuid": true
+      },
+      {
+        "name": "paymentAttemptId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "PaymentAttempt",
+        "uuid": true
+      },
+      {
+        "name": "requestedById",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "reviewedById",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "reason",
+        "type": "RefundReason",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "idempotencyKey",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "providerRefundId",
+        "type": "String?",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "amountPaisa",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "currency",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "RefundStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "requestedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reviewedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "processedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "completedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failureCode",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failureMessage",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "userMessage",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "reviewerNote",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "requestCount",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "needsInvestigation",
+        "type": "Boolean",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "paymentAttemptId, reason"
+      ],
+      [
+        "index",
+        "orderId, status"
+      ],
+      [
+        "index",
+        "status, requestedAt"
+      ]
+    ]
+  },
+  "RefundActivity": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "refundId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "Refund",
+        "uuid": true
+      },
+      {
+        "name": "actorId",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "action",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "note",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "refundId, createdAt"
+      ]
+    ]
+  },
+  "AuditLog": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "actorId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "action",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "entityType",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "entityId",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "metadata",
+        "type": "Json?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "entityType, entityId, createdAt"
+      ],
+      [
+        "index",
+        "actorId, createdAt"
+      ],
+      [
+        "index",
+        "action, createdAt"
+      ]
+    ]
+  },
+  "IdempotencyRecord": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String?",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "scope",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "key",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "requestHash",
+        "type": "String",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "IdempotencyStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "responseStatus",
+        "type": "Int?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "responseBody",
+        "type": "Json?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "resourceId",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "expiresAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "unique",
+        "scope, key"
+      ],
+      [
+        "index",
+        "userId, createdAt"
+      ],
+      [
+        "index",
+        "expiresAt"
+      ]
+    ]
+  },
+  "Job": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "type",
+        "type": "JobType",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "status",
+        "type": "JobStatus",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "deduplicationKey",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "payload",
+        "type": "Json",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "runAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lockedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lockedBy",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "leaseToken",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "leaseExpiresAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "attempts",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failureAttempts",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "maxAttempts",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastError",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "completedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "status, runAt"
+      ],
+      [
+        "index",
+        "type, status"
+      ],
+      [
+        "index",
+        "leaseExpiresAt"
+      ]
+    ]
+  },
+  "MaintenanceState": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "runToken",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "lastStartedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastCompletedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "heartbeatAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "processed",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "failed",
+        "type": "Int",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastFailureAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "lastFailure",
+        "type": "String?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": []
+  },
+  "PasswordReset": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "String",
+        "flags": [
+          "PK"
+        ],
+        "target": null,
+        "uuid": true
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "flags": [
+          "FK"
+        ],
+        "target": "User",
+        "uuid": true
+      },
+      {
+        "name": "tokenHash",
+        "type": "String",
+        "flags": [
+          "UQ"
+        ],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "expiresAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "consumedAt",
+        "type": "DateTime?",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      },
+      {
+        "name": "createdAt",
+        "type": "DateTime",
+        "flags": [],
+        "target": null,
+        "uuid": false
+      }
+    ],
+    "constraints": [
+      [
+        "index",
+        "userId, createdAt"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,874 @@
+[
+  {
+    "method": "GET",
+    "endpoint": "/admin/events",
+    "purpose": "Read events",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/events/:eventId",
+    "purpose": "Read events",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/admin/events/:eventId/cancel",
+    "purpose": "Cancel the reservation or event",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/orders/:orderId",
+    "purpose": "Read orders",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/payments",
+    "purpose": "Read payments",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/payments/:attemptId",
+    "purpose": "Read payments",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/admin/payments/:attemptId/reconcile",
+    "purpose": "Schedule provider verification",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/refunds",
+    "purpose": "Read refunds",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/refunds/:refundId",
+    "purpose": "Read refunds",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/admin/refunds/:refundId",
+    "purpose": "Update refunds",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/admin/refunds/:refundId/reconcile",
+    "purpose": "Schedule provider verification",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/admin/refunds/:refundId/retry",
+    "purpose": "Queue a controlled recovery retry",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/audit-logs",
+    "purpose": "Read reports/audit logs",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/audit-logs/:logId",
+    "purpose": "Read reports/audit logs",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/jobs",
+    "purpose": "Read reports/jobs",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/admin/reports/jobs/:jobId/retry",
+    "purpose": "Queue a controlled recovery retry",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/maintenance",
+    "purpose": "Read maintenance status",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/notification-deliveries",
+    "purpose": "Read reports/notification deliveries",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/operations",
+    "purpose": "Read operational incidents",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/statistics",
+    "purpose": "Read aggregate statistics",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/reports/summary/:panel",
+    "purpose": "Read reports/summary",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/users",
+    "purpose": "Read users",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/admin/users/:userId",
+    "purpose": "Remove users",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/admin/users/:userId",
+    "purpose": "Read users",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/admin/users/:userId/role",
+    "purpose": "Change a user role",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/admin/users/:userId/status",
+    "purpose": "Change user account status",
+    "auth": "Bearer",
+    "role": "ADMIN",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/ai/ask",
+    "purpose": "Answer a question using public event facts",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/ai/ai.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/ai/config",
+    "purpose": "Read optional feature availability",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/ai/ai.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/ai/search",
+    "purpose": "Interpret a natural language event search",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/ai/ai.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/demo",
+    "purpose": "Start a restricted shared demo session",
+    "auth": "No",
+    "role": "Attendee or organizer demo only when enabled",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/google",
+    "purpose": "Sign in with verified Google identity",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/auth/google/config",
+    "purpose": "Read Google sign in availability",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/google/link",
+    "purpose": "Link Google identity to own account",
+    "auth": "Bearer",
+    "role": "Any active user; link own identity",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/login",
+    "purpose": "Create an authenticated session",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/logout",
+    "purpose": "Revoke a refresh session",
+    "auth": "Refresh token",
+    "role": "Token owner; not access JWT",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/refresh",
+    "purpose": "Rotate refresh token and access token",
+    "auth": "Refresh token",
+    "role": "Token owner; not access JWT",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/register",
+    "purpose": "Register an attendee account",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/request-password-reset",
+    "purpose": "Request account recovery email",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/auth/reset-password",
+    "purpose": "Reset password with a single use token",
+    "auth": "No",
+    "role": "Public",
+    "source": "src/modules/auth/auth.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events",
+    "purpose": "Search and paginate published events",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/public-events/public-events.router.ts"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/events/:eventId/ticket-tiers/:tierId/waitlist",
+    "purpose": "Leave a stock alert",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own membership",
+    "source": "src/modules/waitlists/waitlists.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events/:eventId/ticket-tiers/:tierId/waitlist",
+    "purpose": "Read own stock alert membership",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own membership",
+    "source": "src/modules/waitlists/waitlists.router.ts"
+  },
+  {
+    "method": "PUT",
+    "endpoint": "/events/:eventId/ticket-tiers/:tierId/waitlist",
+    "purpose": "Join a stock alert without reserving stock",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own membership",
+    "source": "src/modules/waitlists/waitlists.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events/:slug",
+    "purpose": "Read events",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/public-events/public-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events/:slug/availability",
+    "purpose": "Read current reservable inventory",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/public-events/public-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events/facets",
+    "purpose": "Read discovery cities and categories",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/public-events/public-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/events/recommended",
+    "purpose": "Read personalized published event suggestions",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/recommendations/recommendations.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/health/live",
+    "purpose": "Read process liveness",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/health/health.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/health/ready",
+    "purpose": "Read database readiness",
+    "auth": "No",
+    "role": "Public; rate limited where applicable",
+    "source": "src/modules/health/health.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/notifications",
+    "purpose": "Read notifications",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/notifications/:id/read",
+    "purpose": "Mark one notification read",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/notifications/read-all",
+    "purpose": "Mark own notifications as read",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/notifications/unread-count",
+    "purpose": "Read unread notification count",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/orders",
+    "purpose": "Read orders",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/orders/orders.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/orders",
+    "purpose": "Reserve inventory and create an order",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/orders/orders.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/orders/:orderId",
+    "purpose": "Read orders",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/orders/orders.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/orders/:orderId/cancel",
+    "purpose": "Cancel the reservation or event",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/orders/orders.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/orders/:orderId/refund-requests",
+    "purpose": "Create orders/refund requests",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events",
+    "purpose": "Read events",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/organizer/events",
+    "purpose": "Create events",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/organizer/events/:eventId",
+    "purpose": "Remove events",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId",
+    "purpose": "Read events",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/organizer/events/:eventId",
+    "purpose": "Update events",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/organizer/events/:eventId/cancel",
+    "purpose": "Cancel the reservation or event",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/check-ins",
+    "purpose": "Read events/check ins",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/organizer/events/:eventId/check-ins",
+    "purpose": "Create events/check ins",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/check-ins/status",
+    "purpose": "Read current check in window",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/organizer/events/:eventId/publish",
+    "purpose": "Publish a ready event",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/events/events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/attendance",
+    "purpose": "Read issued and checked in counts",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/inventory",
+    "purpose": "Read current tier inventory",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/orders",
+    "purpose": "Read events/reports/orders",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/orders/export",
+    "purpose": "Export authorized event order CSV",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/sales",
+    "purpose": "Read canonical revenue report",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/reports/statistics",
+    "purpose": "Read aggregate statistics",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/reports.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/events/:eventId/ticket-tiers",
+    "purpose": "Read events/ticket tiers",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/ticket-tiers/ticket-tiers.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/organizer/events/:eventId/ticket-tiers",
+    "purpose": "Create events/ticket tiers",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/ticket-tiers/ticket-tiers.router.ts"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/organizer/events/:eventId/ticket-tiers/:tierId",
+    "purpose": "Remove events/ticket tiers",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/ticket-tiers/ticket-tiers.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/organizer/events/:eventId/ticket-tiers/:tierId",
+    "purpose": "Update events/ticket tiers",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/ticket-tiers/ticket-tiers.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/organizer/overview",
+    "purpose": "Read role specific dashboard summary",
+    "auth": "Bearer",
+    "role": "ORGANIZER owns event; ADMIN may access",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/payments/attempts/:attemptId",
+    "purpose": "Read payments/attempts",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/payments/orders/:orderId/attempts",
+    "purpose": "Read payments/orders/attempts",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/payments/orders/:orderId/checkout",
+    "purpose": "Create or recover hosted checkout",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/payments/sslcommerz/cancel",
+    "purpose": "Persist CANCEL callback and schedule verification",
+    "auth": "Provider validation",
+    "role": "SSLCommerz callback; not a user JWT",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/payments/sslcommerz/fail",
+    "purpose": "Persist FAIL callback and schedule verification",
+    "auth": "Provider validation",
+    "role": "SSLCommerz callback; not a user JWT",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/payments/sslcommerz/ipn",
+    "purpose": "Persist IPN callback and schedule verification",
+    "auth": "Provider validation",
+    "role": "SSLCommerz callback; not a user JWT",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/payments/sslcommerz/success",
+    "purpose": "Persist SUCCESS callback and schedule verification",
+    "auth": "Provider validation",
+    "role": "SSLCommerz callback; not a user JWT",
+    "source": "src/modules/payments/payments.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/refund-requests",
+    "purpose": "Read refund requests",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/refund-requests/:refundId",
+    "purpose": "Read refund requests",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/refunds/refunds.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/saved-events",
+    "purpose": "Read saved events",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/saved-events/saved-events.router.ts"
+  },
+  {
+    "method": "DELETE",
+    "endpoint": "/saved-events/:eventId",
+    "purpose": "Remove saved events",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/saved-events/saved-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/saved-events/:eventId",
+    "purpose": "Read saved events",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/saved-events/saved-events.router.ts"
+  },
+  {
+    "method": "PUT",
+    "endpoint": "/saved-events/:eventId",
+    "purpose": "Join or save saved events",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/saved-events/saved-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/saved-events/memberships",
+    "purpose": "Batch saved event membership reads",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/saved-events/saved-events.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/tickets",
+    "purpose": "Read tickets",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/tickets/:ticketId",
+    "purpose": "Read tickets",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/tickets/:ticketId/qr",
+    "purpose": "Read private QR image",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/tickets/bookings",
+    "purpose": "List complete purchased booking groups",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/tickets/tickets.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me",
+    "purpose": "Read users/me",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/users/me",
+    "purpose": "Update users/me",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/users/me/email-verification",
+    "purpose": "Request email verification",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/users/me/email-verification/confirm",
+    "purpose": "Confirm email verification token",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me/event-preferences",
+    "purpose": "Read event preferences",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/recommendations/recommendations.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/users/me/event-preferences",
+    "purpose": "Update event preferences",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/recommendations/recommendations.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me/identity",
+    "purpose": "Read current authenticated identity",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me/notification-preferences",
+    "purpose": "Read notification preferences",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "PATCH",
+    "endpoint": "/users/me/notification-preferences",
+    "purpose": "Update notification preferences",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/notifications/notifications.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me/overview",
+    "purpose": "Read role specific dashboard summary",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/reports/workspace-reads.router.ts"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/users/me/password",
+    "purpose": "Change password and revoke sessions",
+    "auth": "Bearer",
+    "role": "Any active user; own account only",
+    "source": "src/modules/users/users.router.ts"
+  },
+  {
+    "method": "GET",
+    "endpoint": "/users/me/waitlists",
+    "purpose": "Read waitlists",
+    "auth": "Bearer",
+    "role": "ATTENDEE; own resources only",
+    "source": "src/modules/waitlists/waitlists.router.ts"
+  }
+]

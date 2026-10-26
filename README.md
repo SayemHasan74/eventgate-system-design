@@ -1,0 +1,18 @@
+# EventGate Backend System Design
+
+A documentation deliverable for the existing EventGate event management and ticketing project. No application code is changed.
+
+## Diagrams
+
+- [Open the ERD in Draw.io Viewer](https://viewer.diagrams.net/?lightbox=1&nav=1&title=EventGate%20ERD#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2Fmain%2Fdiagrams%2Feventgate-erd.drawio)
+- [Open the SDA workflow and architecture in Draw.io Viewer](https://viewer.diagrams.net/?lightbox=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FSayemHasan74%2Feventgate-system-design%2Fmain%2Fdiagrams%2Feventgate-workflows.drawio)
+
+Download the `.drawio` files in `diagrams/` to edit them in diagrams.net. The ERD has four named views, covers all 23 Prisma entities, and labels primary keys, foreign keys and unique constraints. Nullable foreign keys use `?`. Scalar pointers without a Prisma relation are not presented as enforced foreign keys. The document contains the complete foreign-key ledger, including links across views.
+
+## Design basis
+
+Backend source: [eventgate-api](https://github.com/SayemHasan74/eventgate-api), revision `f4f9396e83c317bc8b71e5a09762a1cd148ada9e`. API base `/api/v1`. The route inventory contains 109 API operations; it excludes browser BFF routes and infrastructure documentation endpoints. Request and response values in the document are illustrative design examples.
+
+## Written document
+
+The complete Word document is in `deliverables/`. It covers the project, roles, eight core features, workflows, architecture, database, API catalogue, ten detailed contracts, and failure handling. It can be uploaded to Google Drive and opened as Google Docs.

@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" version="29.0.0">
+  <diagram id="eventgate-erd-0" name="EventGate ERD 1 Commerce and inventory">
+    <mxGraphModel dx="1320" dy="1080" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="1080" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 1 Commerce and inventory" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   |   Connector runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Event" value="&lt;b&gt;Event&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK organizerId  uuid&lt;br&gt;title  text&lt;br&gt;UQ slug  text&lt;br&gt;startAt  timestamp&lt;br&gt;endAt  timestamp&lt;br&gt;status  EventStatus&lt;br&gt;deletedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="108" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="TicketTier" value="&lt;b&gt;TicketTier&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;name  text&lt;br&gt;pricePaisa  Int&lt;br&gt;capacity  Int&lt;br&gt;reservedQuantity  Int&lt;br&gt;soldQuantity  Int&lt;br&gt;salesStartAt  timestamp&lt;br&gt;salesEndAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="108" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="SavedEvent" value="&lt;b&gt;SavedEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;createdAt  timestamp&lt;br&gt;saleReminderEnabled  bool&lt;br&gt;eventReminderEnabled  bool&lt;br&gt;reminderVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="WaitlistEntry" value="&lt;b&gt;WaitlistEntry&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;status  WaitlistStatus&lt;br&gt;generation  Int&lt;br&gt;lastAlertWave  Int?&lt;br&gt;joinedAt  timestamp&lt;br&gt;lastNotifiedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="420" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="420" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="SavedEvent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Event" target="SavedEvent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Event" target="TicketTier">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="WaitlistEntry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="TicketTier" target="WaitlistEntry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-7" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Event" target="Order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-8" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="TicketTier" target="Order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eventgate-erd-1" name="EventGate ERD 2 Payments and admission">
+    <mxGraphModel dx="1320" dy="1080" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="1080" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 2 Payments and admission" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   |   Connector runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="108" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="PaymentAttempt" value="&lt;b&gt;PaymentAttempt&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ merchantTransactionId  text&lt;br&gt;UQ providerTransactionId  text?&lt;br&gt;amountPaisa  Int&lt;br&gt;status  PaymentStatus&lt;br&gt;FK replayOfAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="PaymentEvent" value="&lt;b&gt;PaymentEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;UQ providerEventKey  text&lt;br&gt;eventType  text&lt;br&gt;receivedAt  timestamp&lt;br&gt;processedAt  timestamp?&lt;br&gt;payload  Json" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Ticket" value="&lt;b&gt;Ticket&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ qrToken  text&lt;br&gt;status  TicketStatus&lt;br&gt;FK checkedInById  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="420" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="420" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="1 : 0..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Order" target="PaymentAttempt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="PaymentEvent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Order" target="Ticket">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Ticket">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Order" target="Refund">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-7" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Refund">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-8" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Refund">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eventgate-erd-2" name="EventGate ERD 3 Identity and account preferences">
+    <mxGraphModel dx="1320" dy="1080" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="1080" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 3 Identity and account preferences" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   |   Connector runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="AuthIdentity" value="&lt;b&gt;AuthIdentity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;provider  AuthProvider&lt;br&gt;providerSubject  text&lt;br&gt;providerEmail  text?&lt;br&gt;createdAt  timestamp&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="RefreshSession" value="&lt;b&gt;RefreshSession&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;familyId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;revokedAt  timestamp?&lt;br&gt;replacedBySessionId  uuid?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="PasswordReset" value="&lt;b&gt;PasswordReset&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="420" width="385" height="204" as="geometry" />
+        </mxCell>
+        <mxCell id="EmailVerification" value="&lt;b&gt;EmailVerification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;email  text&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="420" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="NotificationPreference" value="&lt;b&gt;NotificationPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;inAppEnabled  bool&lt;br&gt;emailEnabled  bool&lt;br&gt;bookingUpdates  bool&lt;br&gt;savedEventReminders  bool&lt;br&gt;waitlistAlerts  bool&lt;br&gt;marketingEmail  bool&lt;br&gt;personalizedEmail  bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="420" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="EventPreference" value="&lt;b&gt;EventPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;preferredCity  text?&lt;br&gt;preferredCategories  text[]&lt;br&gt;personalizationEnabled  bool&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="732" width="385" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="1 : 0..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="EventPreference">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="1 : 0..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="NotificationPreference">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="EmailVerification">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="AuthIdentity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="RefreshSession">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="PasswordReset">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eventgate-erd-3" name="EventGate ERD 4 Notifications and operations">
+    <mxGraphModel dx="1320" dy="1080" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="1080" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 4 Notifications and operations" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   |   Connector runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Notification" value="&lt;b&gt;Notification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;type  text&lt;br&gt;sourceKey  text&lt;br&gt;FK reminderJobId  uuid?&lt;br&gt;readAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="NotificationDelivery" value="&lt;b&gt;NotificationDelivery&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK notificationId  uuid&lt;br&gt;channel  NotificationChannel&lt;br&gt;state  NotificationDeliveryState&lt;br&gt;UQ idempotencyKey  text&lt;br&gt;FK passwordResetId  uuid?&lt;br&gt;FK verificationId  uuid?&lt;br&gt;nextAttemptAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="Job" value="&lt;b&gt;Job&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;type  JobType&lt;br&gt;status  JobStatus&lt;br&gt;UQ deduplicationKey  text&lt;br&gt;runAt  timestamp&lt;br&gt;attempts  Int&lt;br&gt;leaseExpiresAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="RefundActivity" value="&lt;b&gt;RefundActivity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK refundId  uuid&lt;br&gt;actorId  uuid?&lt;br&gt;action  text&lt;br&gt;note  text?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="420" width="385" height="204" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditLog" value="&lt;b&gt;AuditLog&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK actorId  uuid?&lt;br&gt;action  text&lt;br&gt;entityType  text&lt;br&gt;entityId  uuid&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="420" width="385" height="204" as="geometry" />
+        </mxCell>
+        <mxCell id="IdempotencyRecord" value="&lt;b&gt;IdempotencyRecord&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid?&lt;br&gt;scope  text&lt;br&gt;key  text&lt;br&gt;requestHash  text&lt;br&gt;status  IdempotencyStatus&lt;br&gt;resourceId  uuid?&lt;br&gt;expiresAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="28" y="732" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="MaintenanceState" value="&lt;b&gt;MaintenanceState&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  text&lt;br&gt;runToken  uuid?&lt;br&gt;lastStartedAt  timestamp?&lt;br&gt;lastCompletedAt  timestamp?&lt;br&gt;heartbeatAt  timestamp?&lt;br&gt;processed  Int&lt;br&gt;failed  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="466" y="732" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+          <mxGeometry x="904" y="732" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Job" target="Notification">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Notification">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Notification" target="NotificationDelivery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="Refund">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="Refund" target="RefundActivity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="AuditLog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;dashed=0;" edge="1" parent="1" source="User" target="IdempotencyRecord">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
