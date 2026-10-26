@@ -1,210 +1,206 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" type="device" version="29.0.0">
   <diagram id="eventgate-erd-0" name="EventGate ERD 1 Commerce and inventory">
-    <mxGraphModel dx="1320" dy="726" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="726" background="#ffffff">
+    <mxGraphModel dx="1500" dy="794" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="794" background="#ffffff">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="title" value="EventGate ERD 1 Commerce and inventory" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="User">
           <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="Event" value="&lt;b&gt;Event&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK organizerId  uuid&lt;br&gt;title  text&lt;br&gt;UQ slug  text&lt;br&gt;startAt  timestamp&lt;br&gt;endAt  timestamp&lt;br&gt;status  EventStatus&lt;br&gt;deletedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="108" width="385" height="252" as="geometry" />
+        <mxCell id="Event" value="&lt;b&gt;Event&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK organizerId  uuid&lt;br&gt;title  text&lt;br&gt;UQ slug  text&lt;br&gt;startAt  timestamp&lt;br&gt;endAt  timestamp&lt;br&gt;status  EventStatus&lt;br&gt;deletedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Event">
+          <mxGeometry x="538" y="108" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="TicketTier" value="&lt;b&gt;TicketTier&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;name  text&lt;br&gt;pricePaisa  Int&lt;br&gt;capacity  Int&lt;br&gt;reservedQuantity  Int&lt;br&gt;soldQuantity  Int&lt;br&gt;salesStartAt  timestamp&lt;br&gt;salesEndAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="108" width="385" height="276" as="geometry" />
+        <mxCell id="TicketTier" value="&lt;b&gt;TicketTier&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;name  text&lt;br&gt;pricePaisa  Int&lt;br&gt;capacity  Int&lt;br&gt;reservedQuantity  Int&lt;br&gt;soldQuantity  Int&lt;br&gt;salesStartAt  timestamp&lt;br&gt;salesEndAt  timestamp&lt;br&gt;UQ (eventId, name)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="TicketTier">
+          <mxGeometry x="1048" y="108" width="385" height="294" as="geometry" />
         </mxCell>
-        <mxCell id="SavedEvent" value="&lt;b&gt;SavedEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;createdAt  timestamp&lt;br&gt;saleReminderEnabled  bool&lt;br&gt;eventReminderEnabled  bool&lt;br&gt;reminderVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        <mxCell id="SavedEvent" value="&lt;b&gt;SavedEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;createdAt  timestamp&lt;br&gt;saleReminderEnabled  bool&lt;br&gt;eventReminderEnabled  bool&lt;br&gt;reminderVersion  Int&lt;br&gt;UQ (userId, eventId)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="SavedEvent">
+          <mxGeometry x="28" y="448" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="WaitlistEntry" value="&lt;b&gt;WaitlistEntry&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;status  WaitlistStatus&lt;br&gt;generation  Int&lt;br&gt;lastAlertWave  Int?&lt;br&gt;joinedAt  timestamp&lt;br&gt;lastNotifiedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="420" width="385" height="252" as="geometry" />
+        <mxCell id="WaitlistEntry" value="&lt;b&gt;WaitlistEntry&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;status  WaitlistStatus&lt;br&gt;generation  Int&lt;br&gt;lastAlertWave  Int?&lt;br&gt;joinedAt  timestamp&lt;br&gt;lastNotifiedAt  timestamp?&lt;br&gt;UQ (userId, ticketTierId)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="WaitlistEntry">
+          <mxGeometry x="538" y="448" width="385" height="276" as="geometry" />
         </mxCell>
-        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="420" width="385" height="276" as="geometry" />
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Order">
+          <mxGeometry x="1048" y="448" width="385" height="276" as="geometry" />
         </mxCell>
-        <mxCell id="edge-0" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.332;entryX=0;entryY=0.332;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Event">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-0" value="organizer&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.332;entryX=0;entryY=0.332;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Event" schemaChild="Event" schemaForeignKey="organizerId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Event.organizerId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="9.980000000000018" y="0.0" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="183.7" />
               <mxPoint x="425" y="191.66" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-1" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.44400000000000006;exitY=1;entryX=0.4066666666666667;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="SavedEvent">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-1" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.44400000000000006;exitY=1;entryX=0.4066666666666667;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="SavedEvent" schemaChild="SavedEvent" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; SavedEvent.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="11.814999999999998" as="offset" />
             <Array as="points">
-              <mxPoint x="198.94" y="408" />
-              <mxPoint x="184.57" y="408" />
+              <mxPoint x="198.94" y="436" />
+              <mxPoint x="184.57" y="436" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-2" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.44400000000000006;entryX=1;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="SavedEvent">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-2" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.44400000000000006;entryX=1;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="SavedEvent" schemaChild="SavedEvent" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; SavedEvent.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-50.5" as="offset" />
             <Array as="points">
-              <mxPoint x="454" y="219.89" />
-              <mxPoint x="454" y="555.28" />
+              <mxPoint x="526" y="219.89" />
+              <mxPoint x="526" y="597.52" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-3" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="TicketTier">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-3" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="TicketTier" schemaChild="TicketTier" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; TicketTier.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-5.115000000000009" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="248.11" />
-              <mxPoint x="863" y="207.36" />
+              <mxPoint x="935" y="248.11" />
+              <mxPoint x="935" y="213.84" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-4" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="WaitlistEntry">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-4" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="WaitlistEntry" schemaChild="WaitlistEntry" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; WaitlistEntry.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-50.5" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="234.77" />
-              <mxPoint x="425" y="522.48" />
+              <mxPoint x="425" y="560.24" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-5" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="WaitlistEntry">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-5" value="tier&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="WaitlistEntry" schemaChild="WaitlistEntry" schemaForeignKey="ticketTierId" schemaParent="TicketTier" parentPerChild="1" childrenPerParent="0..N" tooltip="TicketTier.id -&gt; WaitlistEntry.ticketTierId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-28.25" y="127.88" as="offset" />
             <Array as="points">
-              <mxPoint x="892" y="246.0" />
-              <mxPoint x="892" y="569.52" />
+              <mxPoint x="1036" y="255.0" />
+              <mxPoint x="1036" y="611.76" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-6" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Order">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-6" value="owner&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Order" schemaChild="Order" schemaForeignKey="attendeeId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Order.attendeeId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="172.66999999999996" y="43.84000000000003" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="260.3" />
               <mxPoint x="425" y="372" />
-              <mxPoint x="863" y="372" />
-              <mxPoint x="863" y="519.36" />
+              <mxPoint x="935" y="372" />
+              <mxPoint x="935" y="547.36" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-7" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="Order">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-7" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="Order" schemaChild="Order" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; Order.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="28.25" y="74.32999999999998" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="276.34" />
-              <mxPoint x="863" y="558.0" />
+              <mxPoint x="935" y="276.34" />
+              <mxPoint x="935" y="586.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-8" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.64;exitY=1;entryX=0.64;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="Order">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-8" value="tier&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.64;exitY=1;entryX=0.64;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="Order" schemaChild="Order" schemaForeignKey="ticketTierId" schemaParent="TicketTier" parentPerChild="1" childrenPerParent="0..N" tooltip="TicketTier.id -&gt; Order.ticketTierId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-280.0" y="0.0" as="offset" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="eventgate-erd-1" name="EventGate ERD 2 Payments and admission">
-    <mxGraphModel dx="1320" dy="726" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="726" background="#ffffff">
+  <diagram id="eventgate-erd-1" name="EventGate ERD 2 Payments and refund settlement">
+    <mxGraphModel dx="1500" dy="770" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="770" background="#ffffff">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="EventGate ERD 2 Payments and admission" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+        <mxCell id="title" value="EventGate ERD 2 Payments and refund settlement" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Order">
+          <mxGeometry x="28" y="108" width="385" height="276" as="geometry" />
         </mxCell>
-        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="108" width="385" height="276" as="geometry" />
+        <mxCell id="PaymentAttempt" value="&lt;b&gt;PaymentAttempt&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ merchantTransactionId  text&lt;br&gt;UQ providerTransactionId  text?&lt;br&gt;amountPaisa  Int&lt;br&gt;status  PaymentStatus&lt;br&gt;FK replayOfAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="PaymentAttempt">
+          <mxGeometry x="538" y="108" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="PaymentAttempt" value="&lt;b&gt;PaymentAttempt&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ merchantTransactionId  text&lt;br&gt;UQ providerTransactionId  text?&lt;br&gt;amountPaisa  Int&lt;br&gt;status  PaymentStatus&lt;br&gt;FK replayOfAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        <mxCell id="PaymentEvent" value="&lt;b&gt;PaymentEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;UQ providerEventKey  text&lt;br&gt;eventType  text&lt;br&gt;receivedAt  timestamp&lt;br&gt;processedAt  timestamp?&lt;br&gt;payload  Json" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="PaymentEvent">
+          <mxGeometry x="1048" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="PaymentEvent" value="&lt;b&gt;PaymentEvent&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;UQ providerEventKey  text&lt;br&gt;eventType  text&lt;br&gt;receivedAt  timestamp&lt;br&gt;processedAt  timestamp?&lt;br&gt;payload  Json" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Refund">
+          <mxGeometry x="28" y="448" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="Ticket" value="&lt;b&gt;Ticket&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ qrToken  text&lt;br&gt;status  TicketStatus&lt;br&gt;FK checkedInById  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="420" width="385" height="276" as="geometry" />
+        <mxCell id="RefundActivity" value="&lt;b&gt;RefundActivity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK refundId  uuid&lt;br&gt;actorId  uuid?&lt;br&gt;action  text&lt;br&gt;note  text?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="RefundActivity">
+          <mxGeometry x="538" y="448" width="385" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="420" width="385" height="252" as="geometry" />
+        <mxCell id="PaymentAttemptOriginal" value="&lt;b&gt;PaymentAttempt same table alias&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ providerTransactionId  text?&lt;br&gt;Referenced by replayOfAttemptId&lt;br&gt;Alias only not an additional table" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#fff3e6;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="PaymentAttempt">
+          <mxGeometry x="1048" y="448" width="385" height="156" as="geometry" />
         </mxCell>
-        <mxCell id="edge-0" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.36;entryX=0;entryY=0.31333333333333335;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Order">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-0" value="fulfillment&lt;br&gt;0..1 : 0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.31333333333333335;entryX=1;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Order" schemaChild="Order" schemaForeignKey="fulfilledPaymentAttemptId" schemaParent="PaymentAttempt" parentPerChild="0..1" childrenPerParent="0..1" tooltip="PaymentAttempt.id -&gt; Order.fulfilledPaymentAttemptId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="12.050000000000011" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="425" y="190.08" />
-              <mxPoint x="425" y="194.48" />
+              <mxPoint x="526" y="186.96" />
+              <mxPoint x="526" y="207.36" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-1" value="1:0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.332;entryX=1;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Order">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-1" value="order&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="PaymentAttempt" schemaChild="PaymentAttempt" schemaForeignKey="orderId" schemaParent="Order" parentPerChild="1" childrenPerParent="0..N" tooltip="Order.id -&gt; PaymentAttempt.orderId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-4.490000000000009" y="-60.0" as="offset" />
             <Array as="points">
-              <mxPoint x="892" y="191.66" />
-              <mxPoint x="892" y="220.24" />
+              <mxPoint x="425" y="246.0" />
+              <mxPoint x="425" y="210.48" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-2" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.44400000000000006;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="PaymentAttempt">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-2" value="replay of&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttemptOriginal" target="PaymentAttempt" schemaChild="PaymentAttempt" schemaForeignKey="replayOfAttemptId" schemaParent="PaymentAttempt" parentPerChild="0..1" childrenPerParent="0..N" tooltip="PaymentAttempt.id -&gt; PaymentAttempt.replayOfAttemptId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="50.5" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="246.0" />
-              <mxPoint x="863" y="219.89" />
+              <mxPoint x="1036" y="526.0" />
+              <mxPoint x="1036" y="234.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-3" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.556;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="PaymentEvent">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-3" value="payment&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5933333333333334;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="PaymentEvent" schemaChild="PaymentEvent" schemaForeignKey="paymentAttemptId" schemaParent="PaymentAttempt" parentPerChild="0..1" childrenPerParent="0..N" tooltip="PaymentAttempt.id -&gt; PaymentEvent.paymentAttemptId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-4.490000000000009" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="892" y="248.11" />
-              <mxPoint x="892" y="408" />
-              <mxPoint x="425" y="408" />
-              <mxPoint x="425" y="534.0" />
+              <mxPoint x="935" y="257.52" />
+              <mxPoint x="935" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-4" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.5933333333333334;exitY=1;entryX=0.4066666666666667;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="Ticket">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-4" value="order&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.64;exitY=1;entryX=0.36;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="Refund" schemaChild="Refund" schemaForeignKey="orderId" schemaParent="Order" parentPerChild="1" childrenPerParent="0..N" tooltip="Order.id -&gt; Refund.orderId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="33.89999999999998" y="-13.0" as="offset" />
             <Array as="points">
-              <mxPoint x="694.43" y="408" />
-              <mxPoint x="622.57" y="408" />
+              <mxPoint x="274.4" y="436" />
+              <mxPoint x="166.6" y="436" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-5" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Ticket">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-5" value="payment&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.6866666666666668;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Refund" schemaChild="Refund" schemaForeignKey="paymentAttemptId" schemaParent="PaymentAttempt" parentPerChild="0..1" childrenPerParent="0..N" tooltip="PaymentAttempt.id -&gt; Refund.paymentAttemptId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-28.25" y="95.98000000000002" as="offset" />
             <Array as="points">
-              <mxPoint x="425" y="222.0" />
-              <mxPoint x="425" y="583.76" />
+              <mxPoint x="526" y="281.04" />
+              <mxPoint x="526" y="574.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-6" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.6866666666666668;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="Refund">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-6" value="refund&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Refund" target="RefundActivity" schemaChild="RefundActivity" schemaForeignKey="refundId" schemaParent="Refund" parentPerChild="1" childrenPerParent="0..N" tooltip="Refund.id -&gt; RefundActivity.refundId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="7.389999999999986" y="-30.0" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="297.52" />
-              <mxPoint x="863" y="510.72" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="edge-7" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.668;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PaymentAttempt" target="Refund">
-          <mxGeometry relative="1" y="-9" as="geometry">
-            <Array as="points">
-              <mxPoint x="1161.18" y="408" />
-              <mxPoint x="1096.5" y="408" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="edge-8" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.64;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Refund">
-          <mxGeometry relative="1" y="-9" as="geometry">
-            <Array as="points">
-              <mxPoint x="454" y="253.92" />
-              <mxPoint x="454" y="396" />
-              <mxPoint x="892" y="396" />
-              <mxPoint x="892" y="581.28" />
+              <mxPoint x="425" y="609.28" />
+              <mxPoint x="425" y="550.0" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -212,88 +208,94 @@
     </mxGraphModel>
   </diagram>
   <diagram id="eventgate-erd-2" name="EventGate ERD 3 Identity and account preferences">
-    <mxGraphModel dx="1320" dy="942" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="942" background="#ffffff">
+    <mxGraphModel dx="1500" dy="1038" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="1038" background="#ffffff">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="title" value="EventGate ERD 3 Identity and account preferences" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="User">
           <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="AuthIdentity" value="&lt;b&gt;AuthIdentity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;provider  AuthProvider&lt;br&gt;providerSubject  text&lt;br&gt;providerEmail  text?&lt;br&gt;createdAt  timestamp&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="108" width="385" height="228" as="geometry" />
+        <mxCell id="AuthIdentity" value="&lt;b&gt;AuthIdentity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;provider  AuthProvider&lt;br&gt;providerSubject  text&lt;br&gt;providerEmail  text?&lt;br&gt;createdAt  timestamp&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="AuthIdentity">
+          <mxGeometry x="538" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="RefreshSession" value="&lt;b&gt;RefreshSession&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;familyId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;revokedAt  timestamp?&lt;br&gt;replacedBySessionId  uuid?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        <mxCell id="RefreshSession" value="&lt;b&gt;RefreshSession&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;familyId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;revokedAt  timestamp?&lt;br&gt;replacedBySessionId  uuid?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="RefreshSession">
+          <mxGeometry x="1048" y="108" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="PasswordReset" value="&lt;b&gt;PasswordReset&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="420" width="385" height="204" as="geometry" />
+        <mxCell id="PasswordReset" value="&lt;b&gt;PasswordReset&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="PasswordReset">
+          <mxGeometry x="28" y="448" width="385" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="EmailVerification" value="&lt;b&gt;EmailVerification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;email  text&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="420" width="385" height="228" as="geometry" />
+        <mxCell id="EmailVerification" value="&lt;b&gt;EmailVerification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;email  text&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="EmailVerification">
+          <mxGeometry x="538" y="448" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="NotificationPreference" value="&lt;b&gt;NotificationPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;inAppEnabled  bool&lt;br&gt;emailEnabled  bool&lt;br&gt;bookingUpdates  bool&lt;br&gt;savedEventReminders  bool&lt;br&gt;waitlistAlerts  bool&lt;br&gt;marketingEmail  bool&lt;br&gt;personalizedEmail  bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="420" width="385" height="252" as="geometry" />
+        <mxCell id="NotificationPreference" value="&lt;b&gt;NotificationPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;inAppEnabled  bool&lt;br&gt;emailEnabled  bool&lt;br&gt;bookingUpdates  bool&lt;br&gt;savedEventReminders  bool&lt;br&gt;waitlistAlerts  bool&lt;br&gt;marketingEmail  bool&lt;br&gt;personalizedEmail  bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="NotificationPreference">
+          <mxGeometry x="1048" y="448" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="EventPreference" value="&lt;b&gt;EventPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;preferredCity  text?&lt;br&gt;preferredCategories  text[]&lt;br&gt;personalizationEnabled  bool&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="732" width="385" height="180" as="geometry" />
+        <mxCell id="EventPreference" value="&lt;b&gt;EventPreference&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK FK userId  uuid&lt;br&gt;preferredCity  text?&lt;br&gt;preferredCategories  text[]&lt;br&gt;personalizationEnabled  bool&lt;br&gt;updatedAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="EventPreference">
+          <mxGeometry x="28" y="788" width="385" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="edge-0" value="1:0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.3;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="EventPreference">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-0" value="user&lt;br&gt;1 : 0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.3;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="EventPreference" schemaChild="EventPreference" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..1" tooltip="User.id -&gt; EventPreference.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="51.125" y="145.5" as="offset" />
             <Array as="points">
               <mxPoint x="143.5" y="348" />
               <mxPoint x="16" y="348" />
-              <mxPoint x="16" y="720" />
-              <mxPoint x="220.5" y="720" />
+              <mxPoint x="16" y="776" />
+              <mxPoint x="220.5" y="776" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-1" value="1:0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.38;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="NotificationPreference">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-1" value="user&lt;br&gt;1 : 0..1" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.38;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="NotificationPreference" schemaChild="NotificationPreference" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..1" tooltip="User.id -&gt; NotificationPreference.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-253.81999999999994" y="-60.34000000000003" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="194.64" />
-              <mxPoint x="425" y="408" />
-              <mxPoint x="892" y="408" />
-              <mxPoint x="892" y="546.0" />
+              <mxPoint x="425" y="436" />
+              <mxPoint x="1036" y="436" />
+              <mxPoint x="1036" y="574.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-2" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.46;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="EmailVerification">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-2" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.46;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="EmailVerification" schemaChild="EmailVerification" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; EmailVerification.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="50.5" as="offset" />
             <Array as="points">
-              <mxPoint x="454" y="212.88" />
-              <mxPoint x="454" y="534.0" />
+              <mxPoint x="526" y="212.88" />
+              <mxPoint x="526" y="562.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-3" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.54;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="AuthIdentity">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-3" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.54;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="AuthIdentity" schemaChild="AuthIdentity" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; AuthIdentity.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="10.560000000000002" y="0.0" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="231.12" />
               <mxPoint x="425" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-4" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.62;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="RefreshSession">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-4" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.62;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="RefreshSession" schemaChild="RefreshSession" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; RefreshSession.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-7.680000000000064" y="30.0" as="offset" />
             <Array as="points">
               <mxPoint x="425" y="249.36" />
               <mxPoint x="425" y="348" />
-              <mxPoint x="892" y="348" />
-              <mxPoint x="892" y="234.0" />
+              <mxPoint x="1036" y="348" />
+              <mxPoint x="1036" y="234.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-5" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.7000000000000001;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="PasswordReset">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-5" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.7000000000000001;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="PasswordReset" schemaChild="PasswordReset" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; PasswordReset.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-19.5" as="offset" />
             <Array as="points">
-              <mxPoint x="297.5" y="408" />
-              <mxPoint x="220.5" y="408" />
+              <mxPoint x="297.5" y="436" />
+              <mxPoint x="220.5" y="436" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -301,102 +303,340 @@
     </mxGraphModel>
   </diagram>
   <diagram id="eventgate-erd-3" name="EventGate ERD 4 Notifications and operations">
-    <mxGraphModel dx="1320" dy="1014" grid="1" gridSize="10" page="1" pageWidth="1320" pageHeight="1014" background="#ffffff">
+    <mxGraphModel dx="1500" dy="1110" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="1110" background="#ffffff">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="title" value="EventGate ERD 4 Notifications and operations" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="15" width="1264" height="32" as="geometry" />
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
-          <mxGeometry x="28" y="54" width="1264" height="32" as="geometry" />
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="User">
           <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="Notification" value="&lt;b&gt;Notification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;type  text&lt;br&gt;sourceKey  text&lt;br&gt;FK reminderJobId  uuid?&lt;br&gt;readAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="108" width="385" height="228" as="geometry" />
+        <mxCell id="Notification" value="&lt;b&gt;Notification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;type  text&lt;br&gt;sourceKey  text&lt;br&gt;FK reminderJobId  uuid?&lt;br&gt;readAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Notification">
+          <mxGeometry x="538" y="108" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="NotificationDelivery" value="&lt;b&gt;NotificationDelivery&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK notificationId  uuid&lt;br&gt;channel  NotificationChannel&lt;br&gt;state  NotificationDeliveryState&lt;br&gt;UQ idempotencyKey  text&lt;br&gt;FK passwordResetId  uuid?&lt;br&gt;FK verificationId  uuid?&lt;br&gt;nextAttemptAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="108" width="385" height="252" as="geometry" />
+        <mxCell id="NotificationDelivery" value="&lt;b&gt;NotificationDelivery&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK notificationId  uuid&lt;br&gt;channel  NotificationChannel&lt;br&gt;state  NotificationDeliveryState&lt;br&gt;UQ idempotencyKey  text&lt;br&gt;FK passwordResetId  uuid?&lt;br&gt;FK verificationId  uuid?&lt;br&gt;nextAttemptAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="NotificationDelivery">
+          <mxGeometry x="1048" y="108" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="Job" value="&lt;b&gt;Job&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;type  JobType&lt;br&gt;status  JobStatus&lt;br&gt;UQ deduplicationKey  text&lt;br&gt;runAt  timestamp&lt;br&gt;attempts  Int&lt;br&gt;leaseExpiresAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="420" width="385" height="228" as="geometry" />
+        <mxCell id="Job" value="&lt;b&gt;Job&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;type  JobType&lt;br&gt;status  JobStatus&lt;br&gt;UQ deduplicationKey  text&lt;br&gt;runAt  timestamp&lt;br&gt;attempts  Int&lt;br&gt;leaseExpiresAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Job">
+          <mxGeometry x="28" y="448" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="RefundActivity" value="&lt;b&gt;RefundActivity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK refundId  uuid&lt;br&gt;actorId  uuid?&lt;br&gt;action  text&lt;br&gt;note  text?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="420" width="385" height="204" as="geometry" />
+        <mxCell id="RefundActivity" value="&lt;b&gt;RefundActivity&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK refundId  uuid&lt;br&gt;actorId  uuid?&lt;br&gt;action  text&lt;br&gt;note  text?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="RefundActivity">
+          <mxGeometry x="538" y="448" width="385" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="AuditLog" value="&lt;b&gt;AuditLog&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK actorId  uuid?&lt;br&gt;action  text&lt;br&gt;entityType  text&lt;br&gt;entityId  uuid&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="420" width="385" height="204" as="geometry" />
+        <mxCell id="AuditLog" value="&lt;b&gt;AuditLog&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK actorId  uuid?&lt;br&gt;action  text&lt;br&gt;entityType  text&lt;br&gt;entityId  uuid&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="AuditLog">
+          <mxGeometry x="1048" y="448" width="385" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="IdempotencyRecord" value="&lt;b&gt;IdempotencyRecord&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid?&lt;br&gt;scope  text&lt;br&gt;key  text&lt;br&gt;requestHash  text&lt;br&gt;status  IdempotencyStatus&lt;br&gt;resourceId  uuid?&lt;br&gt;expiresAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="28" y="732" width="385" height="252" as="geometry" />
+        <mxCell id="IdempotencyRecord" value="&lt;b&gt;IdempotencyRecord&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid?&lt;br&gt;scope  text&lt;br&gt;key  text&lt;br&gt;requestHash  text&lt;br&gt;status  IdempotencyStatus&lt;br&gt;resourceId  uuid?&lt;br&gt;expiresAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="IdempotencyRecord">
+          <mxGeometry x="28" y="788" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="MaintenanceState" value="&lt;b&gt;MaintenanceState&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  text&lt;br&gt;runToken  uuid?&lt;br&gt;lastStartedAt  timestamp?&lt;br&gt;lastCompletedAt  timestamp?&lt;br&gt;heartbeatAt  timestamp?&lt;br&gt;processed  Int&lt;br&gt;failed  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="466" y="732" width="385" height="228" as="geometry" />
+        <mxCell id="MaintenanceState" value="&lt;b&gt;MaintenanceState&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  text&lt;br&gt;runToken  uuid?&lt;br&gt;lastStartedAt  timestamp?&lt;br&gt;lastCompletedAt  timestamp?&lt;br&gt;heartbeatAt  timestamp?&lt;br&gt;processed  Int&lt;br&gt;failed  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="MaintenanceState">
+          <mxGeometry x="538" y="788" width="385" height="228" as="geometry" />
         </mxCell>
-        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1">
-          <mxGeometry x="904" y="732" width="385" height="252" as="geometry" />
+        <mxCell id="Refund" value="&lt;b&gt;Refund&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK paymentAttemptId  uuid?&lt;br&gt;FK requestedById  uuid?&lt;br&gt;FK reviewedById  uuid?&lt;br&gt;amountPaisa  Int&lt;br&gt;reason  RefundReason&lt;br&gt;status  RefundStatus" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Refund">
+          <mxGeometry x="1048" y="788" width="385" height="252" as="geometry" />
         </mxCell>
-        <mxCell id="edge-0" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Job" target="Notification">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-0" value="job&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Job" target="Notification" schemaChild="Notification" schemaForeignKey="reminderJobId" schemaParent="Job" parentPerChild="0..1" childrenPerParent="0..N" tooltip="Job.id -&gt; Notification.reminderJobId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="50.5" as="offset" />
             <Array as="points">
-              <mxPoint x="425" y="534.0" />
+              <mxPoint x="425" y="562.0" />
               <mxPoint x="425" y="190.08" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-1" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.332;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Notification">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-1" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.31333333333333335;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Notification" schemaChild="Notification" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Notification.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-0.9700000000000273" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="425" y="183.7" />
+              <mxPoint x="425" y="179.44" />
               <mxPoint x="425" y="222.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-2" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Notification" target="NotificationDelivery">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-2" value="notification&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Notification" target="NotificationDelivery" schemaChild="NotificationDelivery" schemaForeignKey="notificationId" schemaParent="Notification" parentPerChild="1" childrenPerParent="0..N" tooltip="Notification.id -&gt; NotificationDelivery.notificationId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-12.289999999999964" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="253.92" />
-              <mxPoint x="863" y="234.0" />
+              <mxPoint x="935" y="253.92" />
+              <mxPoint x="935" y="234.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-3" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.44400000000000006;entryX=0;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Refund">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-3" value="requested by&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.4066666666666667;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Refund" schemaChild="Refund" schemaForeignKey="requestedById" schemaParent="User" parentPerChild="0..1" childrenPerParent="0..N" tooltip="User.id -&gt; Refund.requestedById">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="113.77999999999997" y="398.03999999999996" as="offset" />
             <Array as="points">
-              <mxPoint x="425" y="209.23" />
+              <mxPoint x="425" y="200.72" />
               <mxPoint x="425" y="348" />
-              <mxPoint x="892" y="348" />
-              <mxPoint x="892" y="834.48" />
+              <mxPoint x="1036" y="348" />
+              <mxPoint x="1036" y="878.72" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-4" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5933333333333334;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Refund" target="RefundActivity">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-4" value="reviewed by&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Refund" schemaChild="Refund" schemaForeignKey="reviewedById" schemaParent="User" parentPerChild="0..1" childrenPerParent="0..N" tooltip="User.id -&gt; Refund.reviewedById">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-119.0" y="0.0" as="offset" />
             <Array as="points">
-              <mxPoint x="863" y="881.52" />
-              <mxPoint x="863" y="522.0" />
+              <mxPoint x="425" y="222.0" />
+              <mxPoint x="425" y="372" />
+              <mxPoint x="935" y="372" />
+              <mxPoint x="935" y="914.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-5" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="AuditLog">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-5" value="refund&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.64;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Refund" target="RefundActivity" schemaChild="RefundActivity" schemaForeignKey="refundId" schemaParent="Refund" parentPerChild="1" childrenPerParent="0..N" tooltip="Refund.id -&gt; RefundActivity.refundId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-28.25" y="-149.14" as="offset" />
             <Array as="points">
-              <mxPoint x="454" y="234.77" />
-              <mxPoint x="454" y="408" />
-              <mxPoint x="892" y="408" />
-              <mxPoint x="892" y="522.0" />
+              <mxPoint x="1036" y="949.28" />
+              <mxPoint x="1036" y="550.0" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge-6" value="1:N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.668;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="IdempotencyRecord">
-          <mxGeometry relative="1" y="-9" as="geometry">
+        <mxCell id="edge-6" value="actor&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5933333333333334;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="AuditLog" schemaChild="AuditLog" schemaForeignKey="actorId" schemaParent="User" parentPerChild="0..1" childrenPerParent="0..N" tooltip="User.id -&gt; AuditLog.actorId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-165.14" y="-48.18000000000001" as="offset" />
             <Array as="points">
-              <mxPoint x="285.18" y="408" />
-              <mxPoint x="425" y="408" />
-              <mxPoint x="425" y="720" />
-              <mxPoint x="220.5" y="720" />
+              <mxPoint x="526" y="243.28" />
+              <mxPoint x="526" y="436" />
+              <mxPoint x="1036" y="436" />
+              <mxPoint x="1036" y="550.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="user&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.6866666666666668;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="IdempotencyRecord" schemaChild="IdempotencyRecord" schemaForeignKey="userId" schemaParent="User" parentPerChild="0..1" childrenPerParent="0..N" tooltip="User.id -&gt; IdempotencyRecord.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-132.63" y="-186.93499999999995" as="offset" />
+            <Array as="points">
+              <mxPoint x="292.37" y="436" />
+              <mxPoint x="425" y="436" />
+              <mxPoint x="425" y="776" />
+              <mxPoint x="220.5" y="776" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eventgate-erd-4" name="EventGate ERD 5 Delivery reference relationships">
+    <mxGraphModel dx="1500" dy="770" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="770" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 5 Delivery reference relationships" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="User">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="PasswordReset" value="&lt;b&gt;PasswordReset&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="PasswordReset">
+          <mxGeometry x="538" y="108" width="385" height="204" as="geometry" />
+        </mxCell>
+        <mxCell id="EmailVerification" value="&lt;b&gt;EmailVerification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;email  text&lt;br&gt;UQ tokenHash  text&lt;br&gt;expiresAt  timestamp&lt;br&gt;consumedAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="EmailVerification">
+          <mxGeometry x="1048" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Notification" value="&lt;b&gt;Notification&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK userId  uuid&lt;br&gt;type  text&lt;br&gt;sourceKey  text&lt;br&gt;FK reminderJobId  uuid?&lt;br&gt;readAt  timestamp?&lt;br&gt;createdAt  timestamp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Notification">
+          <mxGeometry x="28" y="448" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="NotificationDelivery" value="&lt;b&gt;NotificationDelivery&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK notificationId  uuid&lt;br&gt;channel  NotificationChannel&lt;br&gt;state  NotificationDeliveryState&lt;br&gt;UQ idempotencyKey  text&lt;br&gt;FK passwordResetId  uuid?&lt;br&gt;FK verificationId  uuid?&lt;br&gt;nextAttemptAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="NotificationDelivery">
+          <mxGeometry x="538" y="448" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="Job" value="&lt;b&gt;Job&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;type  JobType&lt;br&gt;status  JobStatus&lt;br&gt;UQ deduplicationKey  text&lt;br&gt;runAt  timestamp&lt;br&gt;attempts  Int&lt;br&gt;leaseExpiresAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Job">
+          <mxGeometry x="1048" y="448" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="job&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Job" target="Notification" schemaChild="Notification" schemaForeignKey="reminderJobId" schemaParent="Job" parentPerChild="0..1" childrenPerParent="0..N" tooltip="Job.id -&gt; Notification.reminderJobId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-15.960000000000036" y="-30.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="1036" y="562.0" />
+              <mxPoint x="1036" y="436" />
+              <mxPoint x="425" y="436" />
+              <mxPoint x="425" y="530.08" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.36;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Notification" schemaChild="Notification" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Notification.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-7.949999999999989" as="offset" />
+            <Array as="points">
+              <mxPoint x="166.6" y="436" />
+              <mxPoint x="220.5" y="436" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.4066666666666667;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="EmailVerification" schemaChild="EmailVerification" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; EmailVerification.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-10.639999999999986" y="30.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="222.0" />
+              <mxPoint x="425" y="324" />
+              <mxPoint x="1036" y="324" />
+              <mxPoint x="1036" y="200.72" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" value="notification&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Notification" target="NotificationDelivery" schemaChild="NotificationDelivery" schemaForeignKey="notificationId" schemaParent="Notification" parentPerChild="1" childrenPerParent="0..N" tooltip="Notification.id -&gt; NotificationDelivery.notificationId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="5.349999999999966" y="0.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="593.92" />
+              <mxPoint x="425" y="538.72" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" value="reset&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.4066666666666667;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="PasswordReset" target="NotificationDelivery" schemaChild="NotificationDelivery" schemaForeignKey="passwordResetId" schemaParent="PasswordReset" parentPerChild="0..1" childrenPerParent="0..N" tooltip="PasswordReset.id -&gt; NotificationDelivery.passwordResetId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-40.0" y="7.035000000000025" as="offset" />
+            <Array as="points">
+              <mxPoint x="694.57" y="436" />
+              <mxPoint x="730.5" y="436" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" value="verification&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5933333333333334;entryX=1;entryY=0.64;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="EmailVerification" target="NotificationDelivery" schemaChild="NotificationDelivery" schemaForeignKey="verificationId" schemaParent="EmailVerification" parentPerChild="0..1" childrenPerParent="0..N" tooltip="EmailVerification.id -&gt; NotificationDelivery.verificationId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-28.25" y="132.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="1036" y="243.28" />
+              <mxPoint x="1036" y="609.28" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" value="user&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.64;entryX=0;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="PasswordReset" schemaChild="PasswordReset" schemaForeignKey="userId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; PasswordReset.userId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-9.810000000000002" y="0.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="253.92" />
+              <mxPoint x="425" y="229.04" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eventgate-erd-5" name="EventGate ERD 6 Tickets ownership and admission staff">
+    <mxGraphModel dx="1500" dy="794" grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="794" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="EventGate ERD 6 Tickets ownership and admission staff" style="text;html=0;align=left;verticalAlign=middle;fontSize=27;fontStyle=1;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="15" width="1444" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable" style="text;html=0;align=left;verticalAlign=middle;fontSize=15;fontStyle=0;fontColor=#172d40;" vertex="1" parent="1">
+          <mxGeometry x="28" y="54" width="1444" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;UQ email  text&lt;br&gt;displayName  text&lt;br&gt;role  UserRole&lt;br&gt;status  UserStatus&lt;br&gt;passwordHash  text?&lt;br&gt;tokenVersion  Int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="User">
+          <mxGeometry x="28" y="108" width="385" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="Event" value="&lt;b&gt;Event&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK organizerId  uuid&lt;br&gt;title  text&lt;br&gt;UQ slug  text&lt;br&gt;startAt  timestamp&lt;br&gt;endAt  timestamp&lt;br&gt;status  EventStatus&lt;br&gt;deletedAt  timestamp?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Event">
+          <mxGeometry x="538" y="108" width="385" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="TicketTier" value="&lt;b&gt;TicketTier&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;name  text&lt;br&gt;pricePaisa  Int&lt;br&gt;capacity  Int&lt;br&gt;reservedQuantity  Int&lt;br&gt;soldQuantity  Int&lt;br&gt;salesStartAt  timestamp&lt;br&gt;salesEndAt  timestamp&lt;br&gt;UQ (eventId, name)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="TicketTier">
+          <mxGeometry x="1048" y="108" width="385" height="294" as="geometry" />
+        </mxCell>
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;quantity  Int&lt;br&gt;totalAmountPaisaSnapshot  Int&lt;br&gt;status  OrderStatus&lt;br&gt;reservationExpiresAt  timestamp&lt;br&gt;FK UQ fulfilledPaymentAttemptId  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#eff4e9;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Order">
+          <mxGeometry x="28" y="448" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="Ticket" value="&lt;b&gt;Ticket&lt;/b&gt;&lt;br&gt;&lt;br&gt;PK id  uuid&lt;br&gt;FK orderId  uuid&lt;br&gt;FK eventId  uuid&lt;br&gt;FK ticketTierId  uuid&lt;br&gt;FK attendeeId  uuid&lt;br&gt;sequence  Int&lt;br&gt;UQ qrToken  text&lt;br&gt;status  TicketStatus&lt;br&gt;FK checkedInById  uuid?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor=#e9f1f8;strokeColor=#657c8f;" vertex="1" parent="1" schemaTable="Ticket">
+          <mxGeometry x="538" y="448" width="385" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="organizer&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.332;entryX=0;entryY=0.332;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Event" schemaChild="Event" schemaForeignKey="organizerId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Event.organizerId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="9.980000000000018" y="0.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="183.7" />
+              <mxPoint x="425" y="191.66" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.44400000000000006;entryX=0;entryY=0.36;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="TicketTier" schemaChild="TicketTier" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; TicketTier.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="9.024999999999977" y="0.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="935" y="219.89" />
+              <mxPoint x="935" y="213.84" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" value="owner&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.44400000000000006;exitY=1;entryX=0.332;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Order" schemaChild="Order" schemaForeignKey="attendeeId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Order.attendeeId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-2.5600000000000023" as="offset" />
+            <Array as="points">
+              <mxPoint x="198.94" y="436" />
+              <mxPoint x="155.82" y="436" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.556;entryX=1;entryY=0.44400000000000006;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="Order" schemaChild="Order" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; Order.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-50.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="526" y="248.11" />
+              <mxPoint x="526" y="570.54" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" value="tier&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.556;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="Order" schemaChild="Order" schemaForeignKey="ticketTierId" schemaParent="TicketTier" parentPerChild="1" childrenPerParent="0..N" tooltip="TicketTier.id -&gt; Order.ticketTierId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="-7.769999999999982" y="-30.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="1036" y="255.0" />
+              <mxPoint x="1036" y="436" />
+              <mxPoint x="425" y="436" />
+              <mxPoint x="425" y="601.46" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" value="order&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.31333333333333335;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Order" target="Ticket" schemaChild="Ticket" schemaForeignKey="orderId" schemaParent="Order" parentPerChild="1" childrenPerParent="0..N" tooltip="Order.id -&gt; Ticket.orderId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="26.694999999999993" y="0.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="632.37" />
+              <mxPoint x="425" y="534.48" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" value="event&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0.668;exitY=1;entryX=0.4066666666666667;entryY=0;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="Event" target="Ticket" schemaChild="Ticket" schemaForeignKey="eventId" schemaParent="Event" parentPerChild="1" childrenPerParent="0..N" tooltip="Event.id -&gt; Ticket.eventId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="18.30499999999995" y="-19.0" as="offset" />
+            <Array as="points">
+              <mxPoint x="795.18" y="436" />
+              <mxPoint x="694.57" y="436" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="tier&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=0;exitY=0.64;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="TicketTier" target="Ticket" schemaChild="Ticket" schemaForeignKey="ticketTierId" schemaParent="TicketTier" parentPerChild="1" childrenPerParent="0..N" tooltip="TicketTier.id -&gt; Ticket.ticketTierId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="28.25" y="-94.42000000000002" as="offset" />
+            <Array as="points">
+              <mxPoint x="935" y="296.16" />
+              <mxPoint x="935" y="586.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" value="owner&lt;br&gt;1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.556;entryX=0;entryY=0.5933333333333334;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Ticket" schemaChild="Ticket" schemaForeignKey="attendeeId" schemaParent="User" parentPerChild="1" childrenPerParent="0..N" tooltip="User.id -&gt; Ticket.attendeeId">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="0.0" y="-50.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="234.77" />
+              <mxPoint x="425" y="611.76" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" value="checked by&lt;br&gt;0..1 : 0..N" style="edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor=#557087;endArrow=block;endFill=1;exitX=1;exitY=0.668;entryX=0;entryY=0.6866666666666668;exitPerimeter=0;entryPerimeter=0;dashed=0;" edge="1" parent="1" source="User" target="Ticket" schemaChild="Ticket" schemaForeignKey="checkedInById" schemaParent="User" parentPerChild="0..1" childrenPerParent="0..N" tooltip="User.id -&gt; Ticket.checkedInById">
+          <mxGeometry relative="1" x="0" y="0" as="geometry">
+            <mxPoint x="56.5" y="138.11" as="offset" />
+            <Array as="points">
+              <mxPoint x="425" y="260.3" />
+              <mxPoint x="425" y="637.52" />
             </Array>
           </mxGeometry>
         </mxCell>

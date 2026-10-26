@@ -166,9 +166,9 @@ numbered([
 section(True);diagram('eventgate-workflows-1.png','Figure 2 Ticket reservation with atomic inventory updates and safe error responses. Payment verification follows as described in steps 7 to 10.')
 section(False)
 h('4 Database design')
-p('PostgreSQL stores 23 entities. The ERD is divided into four named Draw.io views for readability. Tables repeated between views are references to the same physical table. The views show important fields; the dictionary and relationship ledger below record keys and cross view dependencies.')
+p('PostgreSQL stores 23 entities. The ERD is divided into six named Draw.io views for readability. Tables repeated between views are references to the same physical table. The views show important fields; the dictionary and relationship ledger below record keys and cross view dependencies.')
 link('ERD share link',links['erd'])
-label('Notation','PK means primary key, FK means enforced foreign key, UQ means unique, and ? means nullable. Most identifiers are UUIDs. MaintenanceState.id is a text key. A parent with 1 to 0..N children is a one to many association. A unique child FK limits it to zero or one child per parent. Nullable FKs mean a child may have no parent for that association.')
+label('Notation','PK means primary key, FK means enforced foreign key, UQ means unique, and ? means nullable. Most identifiers are UUIDs. MaintenanceState.id is a text key. A parent with 1 to 0..N children is a one to many association. A unique child FK limits it to zero or one child per parent. Nullable FKs mean a child may have no parent for that association. Each connector is labelled with its relationship role and a : b, meaning a parents per child and b children per parent. For example 1 : 0..N is mandatory one parent per child with zero or many children per parent; 0..1 : 0..N permits a child without that parent. The canonical payment fulfillment link is optional on both sides, 0..1 : 0..1. The PaymentAttempt alias shows a self reference to the same physical table, not another entity.')
 h('Relationships and integrity rules',2)
 bullets([
  'One to many: an organizer User owns Events; an Event contains TicketTiers; an attendee User places Orders; an Order has PaymentAttempts and Tickets; a PaymentAttempt receives PaymentEvents.',
@@ -179,7 +179,7 @@ bullets([
  'Cross record rules such as a ticket tier belonging to the order event and the fulfillment attempt belonging to the order are enforced in services and transactions. A simple FK alone does not prove these business relationships.',
  'Scalar fields such as AuditLog.entityId, IdempotencyRecord.resourceId, PaymentEvent.capturedPaymentAttemptId and RefundActivity.actorId are not drawn as enforced FKs when the Prisma schema declares no relation.'
 ])
-for i,caption in enumerate(['Commerce inventory and many to many memberships','Payments admission and canonical purchase fulfillment','Identity recovery and one to one preferences','Notifications jobs and audit operations'],1):
+for i,caption in enumerate(['Commerce inventory and many to many memberships','Payments capture replay canonical fulfillment and refund settlement','Identity recovery and one to one preferences','Notifications jobs and audit operations','Optional delivery links for password recovery and email verification','Ticket ownership event inventory and optional admission staff'],1):
  section(True);diagram(f'eventgate-erd-{i}.png',f'Figure {i+2} {caption}. Refer to the foreign key ledger for associations that span views.')
 section(False)
 h('Entity dictionary',2)

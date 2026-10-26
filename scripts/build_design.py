@@ -39,7 +39,7 @@ class Diagram:
   self.nodes.append(dict(key=key,title=title,lines=lines,x=x,y=y,w=w,h=h,color=color));return key
  def edge(self,a,b,label='',color='#557087',dashed=False):self.edges.append(dict(a=a,b=b,label=label,color=color,dashed=dashed))
  def route_edges(self):
-  nodes={n['key']:n for n in self.nodes};used=set();counts={}
+  nodes={n['key']:n for n in self.nodes};used=set();counts={};label_rects=[]
   for e in self.edges:
    for k in ('a','b'):counts[e[k]]=counts.get(e[k],0)+1
   seen={}
@@ -94,6 +94,27 @@ class Diagram:
     if len(simple)>1 and ((simple[-2][0]==simple[-1][0]==point[0]) or (simple[-2][1]==simple[-1][1]==point[1])):simple[-1]=point
     elif not simple or point!=simple[-1]:simple.append(point)
    e['points']=simple;e['ports']=ports
+   if e['label']:
+    measure=ImageDraw.Draw(Image.new('RGB',(1,1)));lines=e['label'].splitlines();lw=max(measure.textlength(line,font=font(13)) for line in lines)+10;lh=18*len(lines)+6
+    total=sum(abs(u[0]-v[0])+abs(u[1]-v[1]) for u,v in zip(simple,simple[1:]));remain=total/2;mid=simple[0]
+    for u,v in zip(simple,simple[1:]):
+     length=abs(u[0]-v[0])+abs(u[1]-v[1])
+     if remain<=length:
+      fraction=remain/length if length else 0;mid=(u[0]+fraction*(v[0]-u[0]),u[1]+fraction*(v[1]-u[1]));break
+     remain-=length
+    candidates=[]
+    for u,v in zip(simple,simple[1:]):
+     for frac in [.5,.25,.75]:
+      cx=u[0]+frac*(v[0]-u[0]);cy=u[1]+frac*(v[1]-u[1])
+      for dx,dy in [(dx,dy) for dx in [0,-40,40,-80,80,-120,120,-160,160,-200,200,-240,240,-280,280,-320,320] for dy in [0,-30,30,-60,60,-90,90]]:
+       x=cx+dx;y=cy+dy;rect=(x-lw/2,y-lh/2,x+lw/2,y+lh/2)
+       if rect[0]<10 or rect[1]<90 or rect[2]>self.w-10 or rect[3]>self.h-8:continue
+       def overlap(a,b):return a[0]<b[2] and a[2]>b[0] and a[1]<b[3] and a[3]>b[1]
+       if any(overlap(rect,(n['x']-3,n['y']-3,n['x']+n['w']+3,n['y']+n['h']+3)) for n in self.nodes):continue
+       if any(overlap(rect,(r[0]-3,r[1]-3,r[2]+3,r[3]+3)) for r in label_rects):continue
+       candidates.append((abs(dx)+abs(dy)+.03*(abs(x-mid[0])+abs(y-mid[1])),x,y,rect))
+    if not candidates:raise ValueError('No clear label placement '+str(e['label']))
+    _,cx,cy,rect=min(candidates);e['labelCenter']=(cx,cy);e['labelOffset']=(cx-mid[0],cy-mid[1]);e['labelRect']=rect;label_rects.append(rect)
  def xml(self):
   self.route_edges()
   model=ET.Element('mxGraphModel',{'dx':str(self.w),'dy':str(self.h),'grid':'1','gridSize':'10','page':'1','pageWidth':str(self.w),'pageHeight':str(self.h),'background':'#ffffff'})
@@ -103,11 +124,18 @@ class Diagram:
   for n in self.nodes:
    value='<b>'+html.escape(n['title'])+'</b><br><br>'+'<br>'.join(html.escape(x) for x in n['lines'])
    c=ET.SubElement(root,'mxCell',id=n['key'],value=value,style=f'rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=17;fillColor={n["color"]};strokeColor=#657c8f;',vertex='1',parent='1')
+   if 'table' in n:c.set('schemaTable',n['table'])
    ET.SubElement(c,'mxGeometry',{'x':str(n['x']),'y':str(n['y']),'width':str(n['w']),'height':str(n['h']),'as':'geometry'})
   for i,e in enumerate(self.edges):
    (ex,ey),(ix,iy)=e['ports']
-   c=ET.SubElement(root,'mxCell',id='edge-'+str(i),value=e['label'],style=f'edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor={e["color"]};endArrow=block;endFill=1;exitX={ex};exitY={ey};entryX={ix};entryY={iy};exitPerimeter=0;entryPerimeter=0;dashed={int(e["dashed"])};',edge='1',parent='1',source=e['a'],target=e['b'])
-   geo=ET.SubElement(c,'mxGeometry',{'relative':'1','y':'-9','as':'geometry'});arr=ET.SubElement(geo,'Array',{'as':'points'})
+   c=ET.SubElement(root,'mxCell',id='edge-'+str(i),value=html.escape(e['label']).replace('\n','<br>'),style=f'edgeStyle=none;rounded=0;html=1;fontSize=13;labelBackgroundColor=#ffffff;strokeColor={e["color"]};endArrow=block;endFill=1;exitX={ex};exitY={ey};entryX={ix};entryY={iy};exitPerimeter=0;entryPerimeter=0;dashed={int(e["dashed"])};',edge='1',parent='1',source=e['a'],target=e['b'])
+   for attr in ['schemaChild','schemaForeignKey','schemaParent','parentPerChild','childrenPerParent']:
+    if attr in e:c.set(attr,e[attr])
+   if 'schemaForeignKey' in e:c.set('tooltip',e['schemaParent']+'.id -> '+e['schemaChild']+'.'+e['schemaForeignKey'])
+   geo=ET.SubElement(c,'mxGeometry',{'relative':'1','x':'0','y':'0','as':'geometry'});
+   if 'labelOffset' in e:
+    ox,oy=e['labelOffset'];ET.SubElement(geo,'mxPoint',{'x':str(ox),'y':str(oy),'as':'offset'})
+   arr=ET.SubElement(geo,'Array',{'as':'points'})
    for x,y in e['points'][1:-1]:ET.SubElement(arr,'mxPoint',{'x':str(x),'y':str(y)})
 
   return model
@@ -121,7 +149,10 @@ class Diagram:
    d.line([(int(x*scale),int(y*scale)) for x,y in pts],fill=e['color'],width=3)
    end,prev=pts[-1],pts[-2];theta=math.atan2(end[1]-prev[1],end[0]-prev[0]);p=[end,(end[0]-12*math.cos(theta-.45),end[1]-12*math.sin(theta-.45)),(end[0]-12*math.cos(theta+.45),end[1]-12*math.sin(theta+.45))];d.polygon([(x*scale,y*scale) for x,y in p],fill=e['color'])
    if e['label']:
-    u,v=max(zip(pts,pts[1:]),key=lambda ab:abs(ab[0][0]-ab[1][0])+abs(ab[0][1]-ab[1][1]));lx=(u[0]+v[0])/2;ly=(u[1]+v[1])/2-10;tw=d.textbbox((0,0),e['label'],font=font(13*scale));lx-=tw[2]/scale/2;d.rectangle((lx*scale-4,ly*scale-1,lx*scale+tw[2]+5,ly*scale+tw[3]+4),fill='white');text(lx,ly,e['label'],13)
+    cx,cy=e['labelCenter'];lines=e['label'].splitlines();box=e['labelRect'];d.rectangle(tuple(value*scale for value in box),fill='white')
+    for j,line in enumerate(lines):
+     width=d.textlength(line,font=font(13*scale))/scale;text(cx-width/2,box[1]+3+j*18,line,13)
+
 
   for n in self.nodes:
    x,y,w,h=[n[k] for k in ('x','y','w','h')];d.rectangle((x*scale,y*scale,(x+w)*scale,(y+h)*scale),fill=n['color'],outline='#657c8f',width=2)
@@ -138,9 +169,11 @@ def write_diagrams(name,pages):
 # Each view has repeated anchors so all foreign-key relationships remain traceable.
 views=[
  ('Commerce and inventory',['User','Event','TicketTier','SavedEvent','WaitlistEntry','Order']),
- ('Payments and admission',['User','Order','PaymentAttempt','PaymentEvent','Ticket','Refund']),
+ ('Payments and refund settlement',['Order','PaymentAttempt','PaymentEvent','Refund','RefundActivity']),
  ('Identity and account preferences',['User','AuthIdentity','RefreshSession','PasswordReset','EmailVerification','NotificationPreference','EventPreference']),
  ('Notifications and operations',['User','Notification','NotificationDelivery','Job','RefundActivity','AuditLog','IdempotencyRecord','MaintenanceState','Refund']),
+ ('Delivery reference relationships',['User','PasswordReset','EmailVerification','Notification','NotificationDelivery','Job']),
+ ('Tickets ownership and admission staff',['User','Event','TicketTier','Order','Ticket']),
 ]
 chosen={
  'User':['id','email','displayName','role','status','passwordHash','tokenVersion'],
@@ -160,7 +193,7 @@ chosen={
 }
 ERDS=[]
 for vi,(title,names) in enumerate(views):
- p=Diagram('EventGate ERD '+str(vi+1)+' '+title,'PK primary key   FK foreign key   UQ unique   ? nullable   N zero or many   |   Arrow runs from parent to child',1320,1080)
+ p=Diagram('EventGate ERD '+str(vi+1)+' '+title,'Arrow parent to child   |   a : b = parents per child : children per parent   |   PK key   FK foreign key   UQ unique   ? nullable',1500,1080)
  for i,name in enumerate(names):
   fields=models[name]['fields'];keep=chosen.get(name)
   if keep:fields=[f for k in keep for f in fields if f['name']==k]
@@ -172,14 +205,24 @@ for vi,(title,names) in enumerate(views):
    label=(' '.join(f['flags'])+' ' if f['flags'] else '')+f['name']
    if len(label+' '+typ)>37:lines.extend([label,'  '+typ])
    else:lines.append(label+'  '+typ)
-  x=28+(i%3)*438;y=108+(i//3)*312
+  if name in ['SavedEvent','WaitlistEntry','TicketTier']:
+   compound=[keys for kind,keys in models[name]['constraints'] if kind=='unique']
+   for keys in compound:lines.append('UQ ('+keys+')')
+  x=28+(i%3)*510;y=108+(i//3)*340
   p.box(name,name,lines,x,y,w=385,h=min(294,60+24*len(lines)),color='#e9f1f8' if name not in ['User','Order','Refund'] else '#eff4e9')
+ for node in p.nodes:node['table']=node['key']
+ if 'PaymentAttempt' in names:
+  p.box('PaymentAttemptOriginal','PaymentAttempt same table alias',['PK id  uuid','UQ providerTransactionId  text?','Referenced by replayOfAttemptId','Alias only not an additional table'],1048,448,w=385,color='#fff3e6')
+  p.nodes[-1]['table']='PaymentAttempt'
+ roles={'organizerId':'organizer','userId':'user','eventId':'event','ticketTierId':'tier','attendeeId':'owner','checkedInById':'checked by','fulfilledPaymentAttemptId':'fulfillment','paymentAttemptId':'payment','orderId':'order','requestedById':'requested by','reviewedById':'reviewed by','replayOfAttemptId':'replay of','passwordResetId':'reset','verificationId':'verification','notificationId':'notification','reminderJobId':'job','actorId':'actor','refundId':'refund'}
  for rel in relationships:
-  if rel['parent'] in names and rel['child'] in names and rel['parent']!=rel['child']:
-   child=rel['child'];parent=rel['parent'];label='1:'+('0..1' if rel['unique'] else 'N')
-   
-   if not any(e['a']==parent and e['b']==child for e in p.edges):p.edge(parent,child,label)
- p.h=max(n['y']+n['h'] for n in p.nodes)+30
+  if rel['parent'] in names and rel['child'] in names:
+   parent='PaymentAttemptOriginal' if rel['parent']==rel['child']=='PaymentAttempt' else rel['parent']
+   child=rel['child'];left='0..1' if rel['optional'] else '1';right='0..1' if rel['unique'] else '0..N'
+   label=roles.get(rel['field'],rel['field'])+'\n'+left+' : '+right
+   p.edge(parent,child,label)
+   p.edges[-1].update(schemaChild=child,schemaForeignKey=rel['field'],schemaParent=rel['parent'],parentPerChild=left,childrenPerParent=right)
+ p.h=max(n['y']+n['h'] for n in p.nodes)+70
  ERDS.append(p)
 write_diagrams('eventgate-erd',ERDS)
 

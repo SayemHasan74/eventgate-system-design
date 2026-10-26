@@ -1,0 +1,379 @@
+{
+  "foreignKeys": 36,
+  "represented": 36,
+  "diagramViews": 6,
+  "errors": [],
+  "relations": [
+    {
+      "child": "EventPreference",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..1",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences"
+      ]
+    },
+    {
+      "child": "Notification",
+      "foreignKey": "reminderJobId",
+      "parent": "Job",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations",
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "Notification",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations",
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "NotificationPreference",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..1",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences"
+      ]
+    },
+    {
+      "child": "EmailVerification",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences",
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "NotificationDelivery",
+      "foreignKey": "passwordResetId",
+      "parent": "PasswordReset",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "NotificationDelivery",
+      "foreignKey": "notificationId",
+      "parent": "Notification",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations",
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "NotificationDelivery",
+      "foreignKey": "verificationId",
+      "parent": "EmailVerification",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    },
+    {
+      "child": "AuthIdentity",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences"
+      ]
+    },
+    {
+      "child": "RefreshSession",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences"
+      ]
+    },
+    {
+      "child": "Event",
+      "foreignKey": "organizerId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory",
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "SavedEvent",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory"
+      ]
+    },
+    {
+      "child": "SavedEvent",
+      "foreignKey": "eventId",
+      "parent": "Event",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory"
+      ]
+    },
+    {
+      "child": "TicketTier",
+      "foreignKey": "eventId",
+      "parent": "Event",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory",
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "WaitlistEntry",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory"
+      ]
+    },
+    {
+      "child": "WaitlistEntry",
+      "foreignKey": "ticketTierId",
+      "parent": "TicketTier",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory"
+      ]
+    },
+    {
+      "child": "Order",
+      "foreignKey": "attendeeId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory",
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Order",
+      "foreignKey": "eventId",
+      "parent": "Event",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory",
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Order",
+      "foreignKey": "ticketTierId",
+      "parent": "TicketTier",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 1 Commerce and inventory",
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Order",
+      "foreignKey": "fulfilledPaymentAttemptId",
+      "parent": "PaymentAttempt",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..1",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "PaymentAttempt",
+      "foreignKey": "orderId",
+      "parent": "Order",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "PaymentAttempt",
+      "foreignKey": "replayOfAttemptId",
+      "parent": "PaymentAttempt",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "PaymentEvent",
+      "foreignKey": "paymentAttemptId",
+      "parent": "PaymentAttempt",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "Ticket",
+      "foreignKey": "orderId",
+      "parent": "Order",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Ticket",
+      "foreignKey": "eventId",
+      "parent": "Event",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Ticket",
+      "foreignKey": "ticketTierId",
+      "parent": "TicketTier",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Ticket",
+      "foreignKey": "attendeeId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Ticket",
+      "foreignKey": "checkedInById",
+      "parent": "User",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 6 Tickets ownership and admission staff"
+      ]
+    },
+    {
+      "child": "Refund",
+      "foreignKey": "orderId",
+      "parent": "Order",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "Refund",
+      "foreignKey": "paymentAttemptId",
+      "parent": "PaymentAttempt",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement"
+      ]
+    },
+    {
+      "child": "Refund",
+      "foreignKey": "requestedById",
+      "parent": "User",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations"
+      ]
+    },
+    {
+      "child": "Refund",
+      "foreignKey": "reviewedById",
+      "parent": "User",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations"
+      ]
+    },
+    {
+      "child": "RefundActivity",
+      "foreignKey": "refundId",
+      "parent": "Refund",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 2 Payments and refund settlement",
+        "EventGate ERD 4 Notifications and operations"
+      ]
+    },
+    {
+      "child": "AuditLog",
+      "foreignKey": "actorId",
+      "parent": "User",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations"
+      ]
+    },
+    {
+      "child": "IdempotencyRecord",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "0..1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 4 Notifications and operations"
+      ]
+    },
+    {
+      "child": "PasswordReset",
+      "foreignKey": "userId",
+      "parent": "User",
+      "parentPerChild": "1",
+      "childrenPerParent": "0..N",
+      "views": [
+        "EventGate ERD 3 Identity and account preferences",
+        "EventGate ERD 5 Delivery reference relationships"
+      ]
+    }
+  ]
+}
